@@ -42,13 +42,14 @@
 }
 
 .selected {
-  outline: 0.5rem solid rgba(variables.$color_yellow_light, 1);
+  box-shadow: 0 0 0 0.25rem rgba(variables.$color_yellow_light, 1);
   border-radius: .25rem;
   position: relative;
   opacity: 1;
-  transition: outline 0.2s;
+  transition: box-shadow 0.2s;
 
   @include tablet {
+    box-shadow: 0 0 0 0.5rem rgba(variables.$color_yellow_light, 1);
     border-radius: .5rem;
   }
 
@@ -58,5 +59,5 @@
 }
 
 .hidden {
-  outline: 0.1rem solid rgba(variables.$color_yellow_light, 0);
+  box-shadow: 0 0 0 0.1rem rgba(variables.$color_yellow_light, 0);
 }

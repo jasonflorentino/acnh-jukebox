@@ -5,8 +5,8 @@ import SongName from '@/components/SongName'
 
 import styles from '@/components/AlbumArt.module.scss'
 
-// Solid light yellow
-const blurDataURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP88u3+fwAJeQPKz5nhtAAAAABJRU5ErkJggg=='
+// Dark blue with 0.8 opacity
+const blurDataURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0D596BgAEIQIBZpsFJQAAAABJRU5ErkJggg=='
 
 export default function AlbumArt({ 
   song, 
@@ -29,7 +29,11 @@ export default function AlbumArt({
   }
 
   const handleOnClick = () => {
-    setCurrentSong(song)
+    if (isCurrentSong) {
+      setCurrentSong(null)
+    } else {
+      setCurrentSong(song)
+    }
   }
   
   return (
