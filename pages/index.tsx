@@ -1,9 +1,13 @@
+import { useState } from 'react'
+
 import Head from 'next/head'
 import AlbumArt from '@/components/AlbumArt'
 
 import styles from '@/styles/Home.module.scss'
 
 export default function Home({ songs }: { songs: Song[] }) {
+  const [currentSong, setCurrentSong] = useState<null | Song>(null)
+
   return (
     <div className={styles.app}>
       <Head>
@@ -18,10 +22,12 @@ export default function Home({ songs }: { songs: Song[] }) {
 
       <main className={styles.main}>
         <ol className={styles.songList}>
-          {songs.map((song: Song) => (
-              <AlbumArt key={song.id} song={song} />
+          {songs.map((song: Song) => {
+            const isCurrentSong = currentSong?.id === song.id
+            return (
+              <AlbumArt key={song.id} song={song} isCurrentSong={isCurrentSong} setCurrentSong={setCurrentSong} />
             )
-          )}
+            })}
         </ol>
       </main>
     </div>
