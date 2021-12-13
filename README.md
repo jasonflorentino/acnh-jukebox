@@ -1,16 +1,4 @@
-# nextjs-typescript-starter
+# acnh-jukebox
 
-## create project
-
-```bash
-npx create-next-app app --example "https://github.com/redimpulz/nextjs-typescript-starter"
-```
-
-## features
-
-- Next.js
-- TypeScript
-- ESlint
-- Prettier
-- Tailwind CSS
-- VScode Extentions
+Setup from https://github.com/redimpulz/nextjs-typescript-starter
+Data api from https://acnhapi.com/

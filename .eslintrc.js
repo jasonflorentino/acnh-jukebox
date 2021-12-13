@@ -9,11 +9,5 @@ module.exports = {
   rules: {
     semi: ['error', 'never'],
     quotes: ['error', 'single'],
-    'no-restricted-imports': [
-      'error',
-      {
-        patterns: ['../'],
-      },
-    ],
   },
 }
