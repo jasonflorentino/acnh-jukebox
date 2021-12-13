@@ -25,7 +25,12 @@ export default function Home({ songs }: { songs: Song[] }) {
           {songs.map((song: Song) => {
             const isCurrentSong = currentSong?.id === song.id
             return (
-              <AlbumArt key={song.id} song={song} isCurrentSong={isCurrentSong} setCurrentSong={setCurrentSong} />
+              <AlbumArt 
+                key={song.id} 
+                song={song} 
+                isCurrentSong={isCurrentSong} 
+                setCurrentSong={setCurrentSong} 
+              />
             )
             })}
         </ol>

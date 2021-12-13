@@ -39,6 +39,7 @@ export default function AlbumArt({
   return (
     <li 
       key={id}
+      id={nameUsEn.replace(/[^a-zA-Z]/g, '')}
       className={styles.listItem} 
       onMouseEnter={handleMouseEnter} 
       onMouseLeave={handleMouseLeave}
