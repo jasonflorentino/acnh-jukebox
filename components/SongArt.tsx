@@ -3,12 +3,12 @@ import { useState } from 'react'
 import Image from 'next/image'
 import SongName from '@/components/SongName'
 
-import styles from '@/components/AlbumArt.module.scss'
+import styles from '@/components/SongArt.module.scss'
 
 // Dark blue with 0.8 opacity
 const blurDataURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0D596BgAEIQIBZpsFJQAAAABJRU5ErkJggg=='
 
-export default function AlbumArt({ 
+export default function SongArt({ 
   song, 
   isCurrentSong, 
   setCurrentSong, 

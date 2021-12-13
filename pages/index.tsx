@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import Head from 'next/head'
-import AlbumArt from '@/components/AlbumArt'
+import SongArt from '@/components/SongArt'
 
 import styles from '@/styles/Home.module.scss'
 
@@ -25,7 +25,7 @@ export default function Home({ songs }: { songs: Song[] }) {
           {songs.map((song: Song) => {
             const isCurrentSong = currentSong?.id === song.id
             return (
-              <AlbumArt 
+              <SongArt 
                 key={song.id} 
                 song={song} 
                 isCurrentSong={isCurrentSong} 
