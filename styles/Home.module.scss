@@ -9,7 +9,11 @@
   max-width: 1440px;
 
   @include tablet {
-    padding: 4rem 3rem;
+    padding: 5rem 3rem;
+  }
+
+  @include desktop {
+    padding: 6rem 3rem;
   }
 }
 

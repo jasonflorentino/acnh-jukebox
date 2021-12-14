@@ -26,6 +26,7 @@
 }
 
 .songImageContainer {
+  position: relative;
   @include shadow;
   &:hover {
     transform: scale(1.015);
@@ -60,4 +61,32 @@
 
 .hidden {
   box-shadow: 0 0 0 0.1rem rgba(variables.$color_yellow_light, 0);
+}
+
+.playingMarker {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 2.75rem;
+  height: 2rem;
+  border: 3px solid variables.$color_yellow_light;
+  box-shadow: none;
+  border-radius: 0 0 75% 0;
+  background-color: variables.$color_yellow_light;
+  z-index: 10;
+
+  @include tablet {
+    width: 3.5rem;
+    height: 2.5rem;
+  }
+}
+
+.playIcon {
+  margin-left: 15%;
+  color: variables.$color_yellow_dark;
+  font-size: 1.2em;
+
+  @include tablet {
+    font-size: 1.6em;
+  }
 }

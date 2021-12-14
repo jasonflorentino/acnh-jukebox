@@ -4,14 +4,15 @@
 .container {
   position: absolute;
   width: calc(100% - (0.78rem * 2));
-  top: -0.75rem;
+  top: -0.25rem;
   z-index: 100;
-  display: none;
+  opacity: 0;
   transition: all 0.1s;
 }
 
 .containerVisible {
-  display: block;
+  top: -0.75rem;
+  opacity: 1;
 }
 
 .nameContainer {

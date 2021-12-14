@@ -7,7 +7,6 @@ module.exports = {
   ],
   plugins: ['tailwindcss'],
   rules: {
-    semi: ['error', 'never'],
     quotes: ['error', 'single'],
   },
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import Image from 'next/image'
 import SongName from '@/components/SongName'
+import { FaPlay } from 'react-icons/fa'
 
 import styles from '@/components/SongArt.module.scss'
 
@@ -47,6 +48,11 @@ export default function SongArt({
     >
     <SongName name={nameUsEn} showName={showName} />
     <div className={styles.songImageContainer}>
+      {isCurrentSong && (
+        <div className={styles.playingMarker}>
+          <FaPlay className={styles.playIcon}/>
+        </div>
+      )}
       <div className={`${styles.selected} ${isCurrentSong ? '' : styles.hidden}`}>
         <Image 
           className={styles.songImage} 

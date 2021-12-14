@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import Head from 'next/head'
 import SongArt from '@/components/SongArt'
+import Player from '@/components/Player'
 
 import styles from '@/styles/Home.module.scss'
 
@@ -21,6 +22,7 @@ export default function Home({ songs }: { songs: Song[] }) {
       </Head>
 
       <main className={styles.main}>
+        <Player currentSong={currentSong} />
         <ol className={styles.songList}>
           {songs.map((song: Song) => {
             const isCurrentSong = currentSong?.id === song.id

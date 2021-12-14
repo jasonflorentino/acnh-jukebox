@@ -1,0 +1,102 @@
+@use "../styles/variables";
+@use "../styles/media" as *;
+
+.playerContainer {
+  position: fixed;
+  top: 0.85rem;
+  left: 0.75rem;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  width: 80%;
+  max-width: 60rem;
+  background-color: variables.$color_white;
+  border-radius: 2.25rem / 50%;
+
+  @include tablet {
+    top: 1.2rem;
+    left: 1.5rem;
+    width: 75%;
+    border-radius: 2.5rem / 50%;
+  }
+
+  @include desktop {
+    top: 1.5rem;
+    left: 2rem;
+    border-radius: 3rem / 50%;
+    padding-left: 1rem;
+  }
+}
+
+.nameContainer {
+  display: flex;
+  align-items: center;
+  color: variables.$color_blue_accent;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  @include tablet {
+    font-size: 1.5rem;
+  }
+  @include desktop {
+    font-size: 1.85rem;
+  }
+}
+
+.musicNote {
+  font-size: 1.2em;
+  margin-right: 0.2rem;
+  
+  @include tablet {
+    margin-right: 0.3rem;
+  }
+  @include desktop {
+    margin-right: 0.4rem;
+  }
+}
+
+.volumeContainer {
+  display: flex;
+  top: 1rem;
+  left: 1rem;
+  align-items: center;
+  font-size: 1.4rem;
+
+  @include tablet {
+    font-size: 2rem;
+  }
+}
+
+.volumeLevelBaseIcon {
+  color: rgba(variables.$color_blue_grey, 0.5);
+  font-size: 1.15em;
+}
+
+.volumeLevelBuildupIcon {
+  color: variables.$color_blue_accent;
+  font-size: 1.1em;
+  position: absolute;
+  z-index: 1;
+}
+
+.volumeLevelBuildupIconMax {
+  color: variables.$color_blue_accent;
+  font-size: 1.15em;
+  position: absolute;
+  z-index: 1;
+}
+
+.volumeControlIcon {
+  color: variables.$color_blue_dark;
+  margin: 0 0.25rem;
+
+  @include tablet {
+    margin: 0 0.75rem;
+  }
+
+  &Disabled {
+    color: variables.$color_blue_grey;
+  }
+}
