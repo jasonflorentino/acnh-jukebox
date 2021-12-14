@@ -1,0 +1,18 @@
+@use "../styles/variables";
+@use "../styles/media" as *;
+
+.footerContainer {
+  margin-top: 4rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: variables.$color_blue_dark;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.githubIcon {
+  font-size: 1.3em;
+  margin: 0.75rem;
+}

@@ -18,7 +18,7 @@ export default function SongArt({
   isCurrentSong: boolean, 
   setCurrentSong: (newState: null | Song) => void,
 }) {
-  const {id, image_uri, music_uri, name: { 'name-USen': nameUsEn }} = song
+  const {id, image_uri, name: { 'name-USen': nameUsEn }} = song
   const [showName, setShowName] = useState(false)
 
   const handleMouseEnter = () => {
@@ -53,7 +53,11 @@ export default function SongArt({
           <FaPlay className={styles.playIcon}/>
         </div>
       )}
-      <div className={`${styles.selected} ${isCurrentSong ? '' : styles.hidden}`}>
+      <div className={[
+          styles.selected, 
+          isCurrentSong ? '' : styles.hidden
+        ].join(' ')}
+      >
         <Image 
           className={styles.songImage} 
           src={image_uri} 

@@ -3,8 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
+*::selection {
+  background: rgba(252,196,9,255);
+}
+
 body {
   background-color: rgba(89,209,244,255);
+  cursor: url('../public/pointer.png'), auto;
+}
+
+a {
   cursor: url('../public/pointer.png'), auto;
 }
 

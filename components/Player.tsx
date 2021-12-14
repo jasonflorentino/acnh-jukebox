@@ -16,10 +16,8 @@ const VolumeMultiplier = 0.33;
 
 export default function Player({ currentSong }: { currentSong: Song | null }) {
   const { name: { 'name-USen': nameUsEn = '---' } = {} } = currentSong || {};
-  const [audioElement, setAudioElement] = useState<null | HTMLMediaElement>(
-    null
-  );
-  const [volumeLevel, setVolumeLevel] = useState<VolumeLevels>(2);
+  const [audioElement, setAudioElement] = useState<null | HTMLMediaElement>(null);
+  const [volumeLevel, setVolumeLevel] = useState<VolumeLevels>(1);
 
   const setVolume = (level: VolumeLevels) => {
     if (audioElement) {

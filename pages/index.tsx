@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import Head from 'next/head'
-import SongArt from '@/components/SongArt'
-import Player from '@/components/Player'
+import Head from 'next/head';
+import SongArt from '@/components/SongArt';
+import Player from '@/components/Player';
+import Footer from '@/components/Footer';
 
-import styles from '@/styles/Home.module.scss'
+import styles from '@/styles/Home.module.scss';
 
 export default function Home({ songs }: { songs: Song[] }) {
-  const [currentSong, setCurrentSong] = useState<null | Song>(null)
+  const [currentSong, setCurrentSong] = useState<null | Song>(null);
 
   return (
     <div className={styles.app}>
@@ -17,7 +18,10 @@ export default function Home({ songs }: { songs: Song[] }) {
         <meta charSet="utf-8" />
 
         <meta name="description" content="ACNH Music Jukebox" />
-        <meta name="keywords" content="acnh,animal,crossing,new,horizons,kk slider,music,aminal," />
+        <meta
+          name="keywords"
+          content="acnh,animal,crossing,new,horizons,kk slider,music,aminal,"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -25,29 +29,31 @@ export default function Home({ songs }: { songs: Song[] }) {
         <Player currentSong={currentSong} />
         <ol className={styles.songList}>
           {songs.map((song: Song) => {
-            const isCurrentSong = currentSong?.id === song.id
+            const isCurrentSong = currentSong?.id === song.id;
             return (
-              <SongArt 
-                key={song.id} 
-                song={song} 
-                isCurrentSong={isCurrentSong} 
-                setCurrentSong={setCurrentSong} 
+              <SongArt
+                key={song.id}
+                song={song}
+                isCurrentSong={isCurrentSong}
+                setCurrentSong={setCurrentSong}
               />
-            )
-            })}
+            );
+          })}
         </ol>
       </main>
+
+      <Footer />
     </div>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const req = await fetch('https://acnhapi.com/v1a/songs')
-  const data = await req.json()
+  const req = await fetch('https://acnhapi.com/v1a/songs');
+  const data = await req.json();
 
   return {
     props: {
-      songs: data
-    }
-  }
+      songs: data,
+    },
+  };
 }
