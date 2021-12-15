@@ -4,12 +4,16 @@ import Head from 'next/head';
 import SongArt from '@/components/SongArt';
 import Player from '@/components/Player';
 import Footer from '@/components/Footer';
+import useIsMobile from '@/lib/hooks/useIsMobile';
 
 import styles from '@/styles/Home.module.scss';
 
 export default function Home({ songs }: { songs: Song[] }) {
   const [currentSong, setCurrentSong] = useState<null | Song>(null);
   const audioRef = useRef<HTMLMediaElement>(null);
+  const { isMobile } = useIsMobile();
+
+  console.log('isMobile from index', isMobile);
 
   const handlePlay = () => {
     const { current: audioEl } = audioRef;
