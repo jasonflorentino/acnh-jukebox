@@ -1,28 +1,31 @@
+/**
+ * Not so reliable since some mobile devices now
+ * may be larger or have high enough pixel density.
+ * 
+ * Reference:
+ * Detecting mobile browsers with one line of JavaScript
+ * By Andrew Archer, Nov 2017
+ */
+
 import { useState, useEffect } from 'react';
 
 const useIsMobile = () => {
-  console.log('running useIsMobile')
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    console.log('running useIsMobile useeffect')
-    console.log(window.screen)
-    console.log(navigator.userAgent)
     const { width, height } = window.screen;
     const hasMobileAgent = navigator.userAgent.indexOf('Mobi') > -1;
+
     if (Math.min(width, height) < 768 || hasMobileAgent) {
-      console.log('its mobile')
       setIsMobile(true);
     } else {
-      console.log('its not mobile')
       setIsMobile(false);
     };
-  }, [])
+
+  }, [setIsMobile])
 
 
-  return {
-    isMobile,
-  }
+  return [isMobile]
 }
 
 export default useIsMobile;
