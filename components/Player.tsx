@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoMdMusicalNote } from 'react-icons/io';
 import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi';
 import {
@@ -14,14 +14,17 @@ type VolumeLevels = 0 | 1 | 2 | 3;
 
 const VolumeMultiplier = 0.33;
 
-export default function Player({ currentSong }: { currentSong: Song | null }) {
+const Player = ({ currentSong, audioRef }: { 
+  currentSong: Song | null;
+  audioRef: React.RefObject<HTMLMediaElement>;
+ }) => {
   const { name: { 'name-USen': nameUsEn = '---' } = {} } = currentSong || {};
-  const [audioElement, setAudioElement] = useState<null | HTMLMediaElement>(null);
   const [volumeLevel, setVolumeLevel] = useState<VolumeLevels>(1);
+  const { current: audioEl } = audioRef;
 
-  const setVolume = (level: VolumeLevels) => {
-    if (audioElement) {
-      audioElement.volume = level * VolumeMultiplier;
+  const setElementVolume = (level: VolumeLevels) => {
+    if (audioEl) {
+      audioEl.volume = level * VolumeMultiplier;
     }
   };
 
@@ -30,7 +33,7 @@ export default function Player({ currentSong }: { currentSong: Song | null }) {
       return;
     } else {
       const newLevel = (volumeLevel + 1) as VolumeLevels;
-      setVolume(newLevel);
+      setElementVolume(newLevel);
       setVolumeLevel(newLevel);
     }
   };
@@ -40,47 +43,24 @@ export default function Player({ currentSong }: { currentSong: Song | null }) {
       return;
     } else {
       const newLevel = (volumeLevel - 1) as VolumeLevels;
-      setVolume(newLevel);
+      setElementVolume(newLevel);
       setVolumeLevel(newLevel);
     }
   };
 
+  /**
+   * Ensure element volume is synced 
+   * with in-state volume level.
+   * This is mainly only a concern 
+   * on initial load, when volume
+   * hasn't been set by user yet.
+   */
   useEffect(() => {
-    const configureAudioElement = (mediaEl: HTMLMediaElement) => {
-      mediaEl.addEventListener('canplay', () => {
-        mediaEl.play();
-      });
-      mediaEl.loop = true;
-      mediaEl.volume = volumeLevel * VolumeMultiplier;
-    };
-
-    /**
-     * Handle song change
-     * Stop and Clear current song if it exists
-     * Create and set incoming song
-     */
-    if (currentSong) {
-      if (audioElement) {
-        audioElement.pause();
-        setAudioElement(null);
-      }
-      const newAudioEl = new Audio(currentSong.music_uri);
-      configureAudioElement(newAudioEl);
-      setAudioElement(newAudioEl);
-    } else {
-      if (audioElement) {
-        audioElement.pause();
-      }
-      setAudioElement(null);
+    if (nameUsEn && audioRef) {
+      setElementVolume(volumeLevel)
     }
-
-    return () => {
-      if (audioElement) {
-        audioElement.pause();
-      }
-    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSong]);
+  }, [nameUsEn, audioRef])  
 
   return (
     <div className={styles.playerContainer}>
@@ -117,3 +97,5 @@ export default function Player({ currentSong }: { currentSong: Song | null }) {
     </div>
   );
 }
+
+export default Player;

@@ -12,11 +12,17 @@ const blurDataURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAA
 export default function SongArt({ 
   song, 
   isCurrentSong, 
-  setCurrentSong, 
+  setCurrentSong,
+  handlePlay,
+  handlePause,
+  setAudioUri 
 }: {
-  song: Song, 
-  isCurrentSong: boolean, 
-  setCurrentSong: (newState: null | Song) => void,
+  song: Song;
+  isCurrentSong: boolean;
+  setCurrentSong: (newState: null | Song) => void;
+  handlePlay: () => void;
+  handlePause: () => void;
+  setAudioUri: (url: string) => void;
 }) {
   const {id, image_uri, name: { 'name-USen': nameUsEn }} = song
   const [showName, setShowName] = useState(false)
@@ -32,8 +38,11 @@ export default function SongArt({
   const handleOnClick = () => {
     if (isCurrentSong) {
       setCurrentSong(null)
+      handlePause()
     } else {
       setCurrentSong(song)
+      setAudioUri(song.music_uri);
+      handlePlay()
     }
   }
   
