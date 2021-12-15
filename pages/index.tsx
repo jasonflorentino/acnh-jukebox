@@ -79,6 +79,10 @@ export default function Home({ songs }: { songs: Song[] }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <TouchPrompt 
+        setRequiresTouchPrompt={setRequiresTouchPrompt} 
+      />
+
       {isTouchDevice && requiresTouchPrompt && 
       <TouchPrompt 
         setRequiresTouchPrompt={setRequiresTouchPrompt} 

@@ -1,0 +1,32 @@
+@use '../styles/variables';
+
+.SpeechBubbleContainer {
+  width: 92vw;
+  max-width: 1000px;
+  height: 22.5vw;
+  max-height: 250px;
+  padding-bottom: 3%;
+
+}
+
+.bubble_default {
+  background-color: variables.$color_white;
+  box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,0.2);
+}
+
+.bubble_a {
+  @extend .bubble_default;
+  height: 100%;
+  width: 100%;
+  border-radius: 33% / 80%;
+}
+
+.bubble_b {
+  @extend .bubble_default;
+  position: relative;
+  top: -40%;
+  left: 4%;
+  height: 70%;
+  width: 92%;
+  border-radius: 25% / 60%;
+}
