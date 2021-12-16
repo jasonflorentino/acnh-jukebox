@@ -1,4 +1,4 @@
-# ACNH Jukebox
+# 📀 ACNH Jukebox
 
 **A Web app for playing K.K. Slider jams like in Animal Crossing: New Horizons**
 
@@ -13,6 +13,7 @@ This app uses [ACNH API](https://acnhapi.com/) for music data.
 It's a Next.js app written with TypeScript and SCSS, set up from [this starter](https://github.com/redimpulz/nextjs-typescript-starter).  
 
 ## To Do, maybe
+💭 Update fonts  
 💭 Footer content + animate in?  
 💭 Background waves  
 💭 Load to scroll location of last played song  
