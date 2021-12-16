@@ -1,0 +1,12 @@
+.outerContainer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 5vh 0;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}

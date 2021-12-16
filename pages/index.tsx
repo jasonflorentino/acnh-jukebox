@@ -1,16 +1,40 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import Head from 'next/head';
 import SongArt from '@/components/SongArt';
 import Player from '@/components/Player';
 import Footer from '@/components/Footer';
+import TouchPrompt from '@/components/TouchPrompt';
+import useIsTouchDevice from '@/lib/hooks/useIsTouchDevice';
+import useLocalStorage from '@/lib/hooks/useLocalStorage';
 
 import styles from '@/styles/Home.module.scss';
 
 export default function Home({ songs }: { songs: Song[] }) {
   const [currentSong, setCurrentSong] = useState<null | Song>(null);
+  const [requiresTouchPrompt, setRequiresTouchPrompt] = useState(false);
+  const [storage] = useLocalStorage();
+  const [isTouchDevice] = useIsTouchDevice();
   const audioRef = useRef<HTMLMediaElement>(null);
 
+  /**
+   * Handles showing mobile prompt
+   * only once to non-desktop users
+   */
+  useEffect(() => {
+    if (storage) {
+      const hasReceivedTouchPromp = storage.getItem('receivedTouchPrompt') === 'true';
+      if (isTouchDevice && !hasReceivedTouchPromp) {
+        setRequiresTouchPrompt(true);
+        storage.setItem('receivedTouchPrompt', 'true');
+      }
+    }
+  }, [isTouchDevice, requiresTouchPrompt, storage])
+
+  /**
+   * Function for exclicitly playing the
+   * the audio element on click.
+   */
   const handlePlay = () => {
     const { current: audioEl } = audioRef;
     if (audioEl) {
@@ -59,6 +83,11 @@ export default function Home({ songs }: { songs: Song[] }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {isTouchDevice && requiresTouchPrompt && 
+      <TouchPrompt 
+        setRequiresTouchPrompt={setRequiresTouchPrompt} 
+      />}
 
       <main className={styles.main}>
         <audio id='audio' ref={audioRef}></audio>
