@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction } from 'react'
 import SpeechBubble from '@/components/SpeechBubble';
 import styles from '@/components/TouchPrompt.module.scss';
 
+const message = 'Hello! I do my best on Desktop! Some things might not work so well here. Sorry! (Tap to dismiss)'
+
 export default function TouchPrompt({ 
   setRequiresTouchPrompt 
 }: {
@@ -10,10 +12,13 @@ export default function TouchPrompt({
   const handleClick = () => {
     setRequiresTouchPrompt(false);
   }
-  
+
   return (
     <div className={styles.outerContainer} onClick={handleClick}>
-      <SpeechBubble />
+      <SpeechBubble 
+        message={message} 
+        name={'Jukebox'}
+      />
     </div>
   )
 }

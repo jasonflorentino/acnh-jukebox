@@ -17,6 +17,10 @@ export default function Home({ songs }: { songs: Song[] }) {
   const [isTouchDevice] = useIsTouchDevice();
   const audioRef = useRef<HTMLMediaElement>(null);
 
+  /**
+   * Handles showing mobile prompt
+   * only once to non-desktop users
+   */
   useEffect(() => {
     if (storage) {
       const hasReceivedTouchPromp = storage.getItem('receivedTouchPrompt') === 'true';
@@ -27,9 +31,10 @@ export default function Home({ songs }: { songs: Song[] }) {
     }
   }, [isTouchDevice, requiresTouchPrompt, storage])
 
-  console.log('isTouch', isTouchDevice)
-  console.log('requriesPrompt', requiresTouchPrompt)
-
+  /**
+   * Function for exclicitly playing the
+   * the audio element on click.
+   */
   const handlePlay = () => {
     const { current: audioEl } = audioRef;
     if (audioEl) {
@@ -78,10 +83,6 @@ export default function Home({ songs }: { songs: Song[] }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <TouchPrompt 
-        setRequiresTouchPrompt={setRequiresTouchPrompt} 
-      />
 
       {isTouchDevice && requiresTouchPrompt && 
       <TouchPrompt 

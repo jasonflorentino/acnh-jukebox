@@ -12,7 +12,6 @@
 import { useState, useEffect } from 'react';
 
 const useIsTouchDevice = () => {
-  console.log('running isTouchDevice');
   const [isTouchable, setIsTouchable] = useState(false);
 
   useEffect(() => {
