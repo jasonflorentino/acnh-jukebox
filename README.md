@@ -9,6 +9,7 @@ Data api from https://acnhapi.com/
 💭 Load to scroll location of last played song  
 💭 Better music looping  
 💭 Play random song, button similar to in-game buttons  
+💭 Remove Tailwind  
 ✅ Notify limited features on mobile browers  
 ✅ Works on Safari (Desktop)  
 ✅ Volume control (Desktop only?)  
