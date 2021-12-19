@@ -14,11 +14,12 @@ It's a Next.js app written with TypeScript and SCSS, set up from [this starter](
 
 ## To Do, maybe
 💭 Footer content + animate in?  
+💭 Determine loop times for more songs  
 💭 Background waves  
 💭 Load to scroll location of last played song  
-💭 Better music looping  
 💭 Play random song, button similar to in-game buttons  
 💭 Play/Pause button? Or 'scroll to current song' button?  
+✅ Better music looping  
 ✅ Use different fonts  
 ✅ Update to Next 12  
 ✅ Remove Tailwind  
