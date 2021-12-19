@@ -1,0 +1,65 @@
+{
+  "_args": [
+    [
+      "next-optimized-classnames@1.0.2",
+      "/Users/jasonflorentino/Desktop/acnh-jukebox"
+    ]
+  ],
+  "_from": "next-optimized-classnames@1.0.2",
+  "_id": "next-optimized-classnames@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-qbO0NBE+LObf0QOSQ524yKrriZEMJcJ+CRXUs/WSR0IuDDufJcXdWEZEPPGPUL0LpRFO9CU/MM3v/3U5a1ukaQ==",
+  "_location": "/next-optimized-classnames",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "next-optimized-classnames@1.0.2",
+    "name": "next-optimized-classnames",
+    "escapedName": "next-optimized-classnames",
+    "rawSpec": "1.0.2",
+    "saveSpec": null,
+    "fetchSpec": "1.0.2"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/next-optimized-classnames/-/next-optimized-classnames-1.0.2.tgz",
+  "_spec": "1.0.2",
+  "_where": "/Users/jasonflorentino/Desktop/acnh-jukebox",
+  "author": {
+    "name": "Ken Mueller",
+    "email": "kenmueller0@gmail.com",
+    "url": "https://github.com/kenmueller"
+  },
+  "bugs": {
+    "url": "https://github.com/kenmueller/next-optimized-classnames/issues",
+    "email": "kenmueller0@gmail.com"
+  },
+  "dependencies": {
+    "css-class-generator": "^2.0.0"
+  },
+  "description": "Reduce all CSS classes produced by CSS modules to the smallest form possible",
+  "homepage": "https://github.com/kenmueller/next-optimized-classnames#readme",
+  "keywords": [
+    "next",
+    "nextjs",
+    "next.js",
+    "minify",
+    "optimize",
+    "class",
+    "classname",
+    "css",
+    "scss",
+    "sass"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "next-optimized-classnames",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenmueller/next-optimized-classnames.git"
+  },
+  "types": "types/index.d.ts",
+  "version": "1.0.2"
+}

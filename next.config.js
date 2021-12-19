@@ -1,4 +1,4 @@
-module.exports = require('next-optimized-classnames')({
+module.exports = require('./packages/next-optimized-classnames')({
   swcMinify: true,
   i18n: {
     locales: ['en'],
