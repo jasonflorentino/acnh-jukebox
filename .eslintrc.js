@@ -3,9 +3,8 @@ module.exports = {
     'next',
     'next/core-web-vitals',
     'prettier',
-    'plugin:tailwindcss/recommended',
   ],
-  plugins: ['tailwindcss'],
+  plugins: [],
   rules: {
     quotes: ['error', 'single'],
   },
