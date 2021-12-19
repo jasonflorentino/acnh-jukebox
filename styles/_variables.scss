@@ -14,3 +14,20 @@ $color_yellow_light: rgba(247,253,77,255);
 $color_brown: rgba(139,119,98,255);
 
 $color_white: rgba(244,246,224,255);
+
+$font_fallbacks:
+  -apple-system, 
+  'system-ui', 
+  BlinkMacSystemFont, 
+  'Segoe UI', 
+  Roboto, 
+  Oxygen,
+  Ubuntu,
+  Cantarell,
+  'Open Sans',
+  'Helvetica Neue',
+  sans-serif,
+  'Apple Color Emoji',
+  'Segoe UI Emoji',
+  'Segoe UI Symbol';
+  

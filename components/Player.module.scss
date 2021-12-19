@@ -1,4 +1,5 @@
 @use "../styles/variables";
+@use "../styles/typography";
 @use "../styles/media" as *;
 
 .playerContainer {
@@ -34,6 +35,8 @@
   display: flex;
   align-items: center;
   color: variables.$color_blue_accent;
+
+  @include typography.font-rounded;
   font-size: 1.2rem;
   font-weight: 500;
 
@@ -41,7 +44,7 @@
     font-size: 1.5rem;
   }
   @include desktop {
-    font-size: 1.85rem;
+    font-size: 1.9rem;
   }
 }
 
