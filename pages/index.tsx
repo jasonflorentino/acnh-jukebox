@@ -82,6 +82,7 @@ export default function Home({ songs }: { songs: Song[] }) {
           content="acnh,animal,crossing,new,horizons,kk slider,music,aminal,"
         />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://use.typekit.net/cpb3eoy.css"></link>
       </Head>
 
       {isTouchDevice && requiresTouchPrompt && 

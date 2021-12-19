@@ -1,3 +1,4 @@
+@use '../styles/typography';
 @use '../styles/variables';
 @use '../styles/media' as *;
 
@@ -25,6 +26,7 @@
   border-radius: 30% / 50%;
   color: variables.$color_blue_dark;
   background-color: variables.$color_yellow_medium;
+  @include typography.font-rounded;
   font-weight: 700;
   font-size: 0.8em;
   
@@ -55,6 +57,7 @@
 .messageText {
   text-align: left;
   color: variables.$color_brown;
+  @include typography.font-dialog;
   font-size: 1em;
   line-height: 1.25em;
   font-weight: 500;

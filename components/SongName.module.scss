@@ -1,3 +1,4 @@
+@use "../styles/typography";
 @use "../styles/variables";
 @use "../styles/media" as *;
 
@@ -22,11 +23,13 @@
 
 .name {
   background-color: rgba(variables.$color_blue_accent, 0.9);
-  padding: 0.7rem 1.5rem;
+  padding: 0.6rem 1.4rem;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
   color: variables.$color_white;
+
+  @include typography.font-rounded;
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1;

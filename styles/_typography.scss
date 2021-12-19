@@ -1,0 +1,13 @@
+@use "./variables";
+
+@mixin font-rounded {
+  font-family: proxima-soft, variables.$font_fallbacks;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin font-dialog {
+  font-family: azo-sans-web, variables.$font_fallbacks;
+  font-weight: 700;
+  font-style: normal;
+}
