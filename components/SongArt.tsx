@@ -48,7 +48,6 @@ export default function SongArt({
   
   return (
     <li 
-      key={id}
       id={nameUsEn.replace(/[^a-zA-Z]/g, '')}
       className={styles.listItem} 
       onMouseEnter={handleMouseEnter} 
@@ -68,6 +67,7 @@ export default function SongArt({
         ].join(' ')}
       >
         <Image 
+          loading={id === 1 ? 'eager': 'lazy'}
           className={styles.songImage} 
           src={image_uri} 
           alt={nameUsEn} 
