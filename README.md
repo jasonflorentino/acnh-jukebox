@@ -19,7 +19,8 @@ It's a Next.js app written with TypeScript and SCSS, set up from [this starter](
 💭 Better music looping  
 💭 Play random song, button similar to in-game buttons  
 💭 Play/Pause button? Or 'scroll to current song' button?  
-💭 Remove Tailwind  
+✅ Update to Next 12  
+✅ Remove Tailwind  
 ✅ Notify limited features on mobile browers  
 ✅ Works on Safari (Desktop)  
 ✅ Volume control (Desktop only?)  
