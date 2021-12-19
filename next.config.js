@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = require('next-optimized-classnames')({
   swcMinify: true,
   i18n: {
     locales: ['en'],
@@ -10,4 +10,4 @@ module.exports = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 120,
   },
-}
+})

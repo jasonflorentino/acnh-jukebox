@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production next start",
     "typecheck": "tsc",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .ts,.tsx --ignore-path .gitignore . && prettier --write ./**/*.{ts,tsx}"
   },
   "dependencies": {
     "next": "^12.0.7",
+    "next-optimized-classnames": "^1.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
