@@ -14,6 +14,7 @@ It's a Next.js app written with TypeScript and SCSS, set up from [this starter](
 
 ## To Do, maybe
 💭 Determine loop times for more songs  
+💭 Song name language selector  
 💭 Background waves  
 💭 Load to scroll location of last played song  
 💭 Play random song, button similar to in-game buttons  
