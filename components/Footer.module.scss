@@ -1,3 +1,4 @@
+@use "../styles/typography";
 @use "../styles/variables";
 @use "../styles/media" as *;
 
@@ -8,7 +9,9 @@
   flex-direction: column;
   align-items: center;
   color: variables.$color_blue_dark;
-  font-size: 1.1rem;
+
+  @include typography.font-rounded;
+  font-size: 1rem;
   font-weight: 500;
 
   @include tablet {
@@ -17,6 +20,7 @@
 }
 
 .githubIcon {
+  color: variables.$color_blue_dark;
   font-size: 1.3em;
   margin: 0.75rem;
 }
