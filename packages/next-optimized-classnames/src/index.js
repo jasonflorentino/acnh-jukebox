@@ -6,10 +6,18 @@ const CSS_LOADER_MATCH = join('loaders', 'css-loader', 'src', 'index.js')
 const names = {}
 let index = 0
 
-const getName = key =>
+/**
+ * As another layer of uniqueness for class names,
+ * Provides each letter for each 26 indexes to be 
+ * passed as second arg to `generateName`
+ */
+const makePrefix = index => 
+	'abcdefghijklmnopqrstuvwxyz'[Math.floor(index / 26)]
+
+const getName = key => 
 	Object.prototype.hasOwnProperty.call(names, key)
 		? names[key]
-		: (names[key] = generateName(index++))
+		: (names[key] = generateName(index++, makePrefix(index)))
 
 const getKey = ({ rootContext, resourcePath }, name) =>
 	`${relative(rootContext, resourcePath).replace(/\\+/g, '/')}#${name}`

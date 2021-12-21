@@ -1,6 +1,6 @@
 type Song = {
   id: number,
-  'file-name': string,
+  'file-name'?: string,
   name: {
       'name-USen': string,
       'name-EUen': string,
@@ -17,9 +17,9 @@ type Song = {
       'name-KRko': string,
       'name-EUru': string,
   },
-  'buy-price': number,
-  'sell-price': number,
-  isOrderable: boolean,
+  'buy-price'?: number,
+  'sell-price'?: number,
+  isOrderable?: boolean,
   music_uri: string,
   image_uri: string,
 }

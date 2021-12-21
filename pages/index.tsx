@@ -137,15 +137,17 @@ export default function Home({ songs }: { songs: Song[] }) {
   return (
     <div className={styles.app}>
       <Head>
-        <title>ACNH Jukebox</title>
+        <title>ACNH Jukebox - Animal Crossing: New Horizons Music Player</title>
+        
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta charSet="utf-8" />
+        <meta name="description" content="A Web app for playing K.K. Slider jams like in Animal Crossing: New Horizons." />
+        <meta name="keywords" content='kk slider, music player, game music'/>
+        <meta name="og:title" content='ACNH Jukebox'/>
+        <meta name="og:url" content='https://acnhjukebox.vercel.app'/>
+        <meta name="og:description" content='A music player for K.K. Slider songs like in Animal Crossing: New Horizons.'/>
+        <meta name="og:image" content='https://acnhapi.com/v1/images/songs/95'/>
 
-        <meta name="description" content="ACNH Music Jukebox" />
-        <meta
-          name="keywords"
-          content="acnh,animal,crossing,new,horizons,kk slider,music,aminal,"
-        />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://use.typekit.net/cpb3eoy.css"></link>
       </Head>
@@ -183,11 +185,26 @@ export default function Home({ songs }: { songs: Song[] }) {
 
 export async function getStaticProps() {
   const req = await fetch('https://acnhapi.com/v1a/songs');
-  const data = await req.json();
+  const data: Song[] = await req.json();
+
+  /**
+   * Remove unused props from data
+   */
+  const prunedSongs = data.map((song: Song) => {
+    const { 
+      'file-name': _unused_fileName,
+      'sell-price': _unused_sellPrice,
+      'buy-price': _unused_buyPrice, 
+      isOrderable: _unused_isOrderable,
+      ...prunedSongData 
+    } = song;
+
+    return prunedSongData;
+  })
 
   return {
     props: {
-      songs: data,
+      songs: prunedSongs,
     },
   };
 }
