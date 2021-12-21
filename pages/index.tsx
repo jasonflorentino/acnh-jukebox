@@ -185,11 +185,26 @@ export default function Home({ songs }: { songs: Song[] }) {
 
 export async function getStaticProps() {
   const req = await fetch('https://acnhapi.com/v1a/songs');
-  const data = await req.json();
+  const data: Song[] = await req.json();
+
+  /**
+   * Remove unused props from data
+   */
+  const prunedSongs = data.map((song: Song) => {
+    const { 
+      'file-name': _unused_fileName,
+      'sell-price': _unused_sellPrice,
+      'buy-price': _unused_buyPrice, 
+      isOrderable: _unused_isOrderable,
+      ...prunedSongData 
+    } = song;
+
+    return prunedSongData;
+  })
 
   return {
     props: {
-      songs: data,
+      songs: prunedSongs,
     },
   };
 }
