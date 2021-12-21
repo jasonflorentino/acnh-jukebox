@@ -17,6 +17,15 @@
   @include tablet {
     font-size: 1.2rem;
   }
+
+  opacity: 0;
+  transform: translateY(3vh);;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
+}
+
+.appear {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .githubIcon {
