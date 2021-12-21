@@ -1,4 +1,6 @@
-module.exports = require('./packages/next-optimized-classnames')({
+const useOptimizedClassnames = true;
+
+const defaultConfig = {
   swcMinify: true,
   i18n: {
     locales: ['en'],
@@ -10,4 +12,8 @@ module.exports = require('./packages/next-optimized-classnames')({
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 120,
   },
-})
+}
+
+module.exports = useOptimizedClassnames 
+  ? require('./packages/next-optimized-classnames')(defaultConfig) 
+  : defaultConfig;
