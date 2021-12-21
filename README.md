@@ -13,12 +13,13 @@ This app uses [ACNH API](https://acnhapi.com/) for music data.
 It's a Next.js app written with TypeScript and SCSS, set up from [this starter](https://github.com/redimpulz/nextjs-typescript-starter).  
 
 ## To Do, maybe
-💭 Footer content + animate in?  
+💭 Prune Next page props  
 💭 Determine loop times for more songs  
 💭 Background waves  
 💭 Load to scroll location of last played song  
 💭 Play random song, button similar to in-game buttons  
 💭 Play/Pause button? Or 'scroll to current song' button?  
+✅ Footer content + animate in?  
 ✅ Better music looping  
 ✅ Use different fonts  
 ✅ Update to Next 12  
