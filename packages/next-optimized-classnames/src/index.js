@@ -11,15 +11,13 @@ let index = 0
  * Provides each letter for each 26 indexes to be 
  * passed as second arg to `generateName`
  */
-const makePrefix = (index) => {
-	return 'abcdefghijklmnopqrstuvwxyz'[Math.floor(index / 26)];
-}
+const makePrefix = index => 
+	'abcdefghijklmnopqrstuvwxyz'[Math.floor(index / 26)]
 
-const getName = key => {
-	return Object.prototype.hasOwnProperty.call(names, key)
+const getName = key => 
+	Object.prototype.hasOwnProperty.call(names, key)
 		? names[key]
 		: (names[key] = generateName(index++, makePrefix(index)))
-}
 
 const getKey = ({ rootContext, resourcePath }, name) =>
 	`${relative(rootContext, resourcePath).replace(/\\+/g, '/')}#${name}`
