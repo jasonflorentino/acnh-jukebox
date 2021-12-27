@@ -1,0 +1,46 @@
+@keyframes waveKeyframes {
+  from {
+    left: 0vw;
+  }
+
+  to {
+    left: -100vw;
+  }
+}
+
+@mixin waveAnimation($duration: 1s) {
+  animation-name: waveKeyframes;
+  animation-duration: $duration + 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+@mixin waveLayer($layer: 1) {
+  z-index: 0 - $layer;
+  bottom: -9vw - $layer;
+}
+
+.svgWave {
+  width: 200vw;
+  position: fixed;
+  left: 0vw;
+
+  &1 {
+    @extend .svgWave;
+    @include waveAnimation(2);
+    @include waveLayer(1);
+  }
+
+  &2 {
+    @extend .svgWave;
+    @include waveAnimation(3);
+    @include waveLayer(2);
+  }
+  
+  &3 {
+    @extend .svgWave;
+    @include waveAnimation(4);
+    @include waveLayer(3);
+  }
+}
