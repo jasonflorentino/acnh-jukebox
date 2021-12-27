@@ -41,4 +41,4 @@ It's a Next.js app written with TypeScript and SCSS, set up from [this starter](
   ```
   npm run dev
   ```
-- The will be running on `http://localhost:3000`
+- The app will be running on `http://localhost:3000`
