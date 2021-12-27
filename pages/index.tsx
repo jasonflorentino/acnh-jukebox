@@ -6,6 +6,7 @@ import Player from '@/components/Player';
 import Footer from '@/components/Footer';
 import TouchPrompt from '@/components/TouchPrompt';
 import ActionButton from '@/components/ActionButton';
+import GradientWave from '@/components/GradientWave';
 
 import makeIdFromSongName from '@/lib/utils/makeIdFromSongName';
 import useIsTouchDevice from '@/lib/hooks/useIsTouchDevice';
@@ -72,7 +73,10 @@ export default function Home({ songs }: { songs: Song[] }) {
       step: number // Milliseconds
     ) => {
       // no op for unknown restart time
-      if (restartTime === -1) return setTimeout(() => {}, 100);
+      if (restartTime === -1) {
+        return setTimeout(() => {}, 100);
+      }
+
       cancelPoll();
 
       if (step <= 2000) {
@@ -136,7 +140,7 @@ export default function Home({ songs }: { songs: Song[] }) {
     if (audioEl) {
       audioEl.play();
       /**
-       * Make it loop my calling `play` after an 'ended' event.
+       * Make it loop by calling `play` after an 'ended' event.
        * (`loop = true` didn't restart as nicely as I'd like)
        * However to avoid creating this event listener
        * again on every click, we set a custom property
@@ -177,7 +181,7 @@ export default function Home({ songs }: { songs: Song[] }) {
     const el = document.getElementById(id);
     el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
-  // @ts-ignore
+  // @ts-ignore - Cannot assign to 'current' because it is a read-only property
   playRandomRef.current = playRandomSong; // Manually set ref after fn creation
 
   return (
@@ -226,6 +230,10 @@ export default function Home({ songs }: { songs: Song[] }) {
       </main>
 
       <Footer />
+
+      <GradientWave id={1} color='rgba(41,150,253,1)' />
+      <GradientWave id={2} color='rgba(255,255,255,0.3)' />
+      <GradientWave id={3} color='rgba(102,121,251,1)' />
     </div>
   );
 }
