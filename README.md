@@ -19,6 +19,7 @@ It's a Next.js app written with TypeScript and SCSS, set up from [this starter](
 💭 Load to scroll location of last played song  
 💭 Play random song, button similar to in-game buttons  
 💭 Play/Pause button? Or 'scroll to current song' button?  
+✅ Play random song, button similar to in-game buttons  
 ✅ Prune Next page props  
 ✅ Footer content + animate in?  
 ✅ Better music looping  
