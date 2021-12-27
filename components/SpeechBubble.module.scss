@@ -1,3 +1,4 @@
+@use '../styles/mixins';
 @use '../styles/typography';
 @use '../styles/variables';
 @use '../styles/media' as *;
@@ -10,7 +11,7 @@
   padding-bottom: 3%;
 
   position: relative;
-  z-index: 1000;
+  @include mixins.layer_3;
 }
 
 // Name
@@ -18,7 +19,7 @@
 .speakerName {
   position: absolute;
   transform: rotate(-9deg);
-  z-index: 1002;
+  @include mixins.layer_3(2);
   padding: 0.3em 1em;
   top: -20%;
   left: 3%;
@@ -50,7 +51,7 @@
   top: 13%;
   left: 10%;
   position: absolute;
-  z-index: 1001;
+  @include mixins.layer_3(1);
   overflow-y: auto;
 }
 

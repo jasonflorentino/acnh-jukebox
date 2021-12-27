@@ -1,3 +1,4 @@
+@use "../styles/mixins";
 @use "../styles/variables";
 @use "../styles/typography";
 @use "../styles/media" as *;
@@ -6,7 +7,7 @@
   position: fixed;
   top: 0.85rem;
   left: 0.75rem;
-  z-index: 1000;
+  @include mixins.layer_3;
 
   display: flex;
   justify-content: space-between;
@@ -81,14 +82,14 @@
   color: variables.$color_blue_accent;
   font-size: 1.1em;
   position: absolute;
-  z-index: 1;
+  @include mixins.layer_0;
 }
 
 .volumeLevelBuildupIconMax {
   color: variables.$color_blue_accent;
   font-size: 1.15em;
   position: absolute;
-  z-index: 1;
+  @include mixins.layer_0;
 }
 
 .volumeControlIcon {

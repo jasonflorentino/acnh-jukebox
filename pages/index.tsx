@@ -5,6 +5,9 @@ import SongArt from '@/components/SongArt';
 import Player from '@/components/Player';
 import Footer from '@/components/Footer';
 import TouchPrompt from '@/components/TouchPrompt';
+import ActionButton from '@/components/ActionButton';
+
+import makeIdFromSongName from '@/lib/utils/makeIdFromSongName';
 import useIsTouchDevice from '@/lib/hooks/useIsTouchDevice';
 import useLocalStorage from '@/lib/hooks/useLocalStorage';
 import restartTimes from '@/lib/restartTimes';
@@ -16,6 +19,11 @@ export default function Home({ songs }: { songs: Song[] }) {
   const [storage] = useLocalStorage();
   const [isTouchDevice] = useIsTouchDevice();
   const audioRef = useRef<HTMLMediaElement>(null);
+  const playRandomRef = useRef<() => void>(null);
+
+  //
+  // UseEffects
+  //
 
   /**
    * Handles showing mobile prompt
@@ -97,6 +105,29 @@ export default function Home({ songs }: { songs: Song[] }) {
   }, [currentSong])
 
   /**
+   * Handles mapping the 'R' keyboard key to playing
+   * a random song. We use a Ref object to provide a
+   * reference to this function.
+   */
+  useEffect(() => {
+    const handleKeydownR = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (
+        (e.key === 'R' || e.key === 'r') 
+        && playRandomRef.current
+      ) {
+        playRandomRef.current();
+      }
+    }
+    
+    document.addEventListener('keydown', handleKeydownR);
+  }, [playRandomRef])
+
+  //
+  // Component Functions
+  //
+
+  /**
    * Function for exclicitly playing the
    * the audio element on click.
    */
@@ -134,6 +165,21 @@ export default function Home({ songs }: { songs: Song[] }) {
     }
   }
 
+  const playRandomSong = () => {
+    const randIdx = Math.floor(Math.random() * songs.length);
+    const song = songs[randIdx];
+
+    setCurrentSong(song);
+    setAudioUri(song.music_uri);
+    handlePlay();
+    
+    const id = makeIdFromSongName(song.name['name-USen']);
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  // @ts-ignore
+  playRandomRef.current = playRandomSong; // Manually set ref after fn creation
+
   return (
     <div className={styles.app}>
       <Head>
@@ -160,6 +206,7 @@ export default function Home({ songs }: { songs: Song[] }) {
       <main className={styles.main}>
         <audio id='audio' ref={audioRef}></audio>
         <Player currentSong={currentSong} audioRef={audioRef} />
+        <ActionButton symbol="r" name='random' onAction={playRandomSong} />
         <ol className={styles.songList}>
           {songs.map((song: Song) => {
             const isCurrentSong = currentSong?.id === song.id;

@@ -1,14 +1,15 @@
+@use "../styles/mixins";
 @use "../styles/typography";
 @use "../styles/variables";
 @use "../styles/media" as *;
 
 .container {
+  @include mixins.layer_1;
   position: absolute;
   width: calc(100% - (0.78rem * 2));
   top: -0.25rem;
-  z-index: 100;
   opacity: 0;
-  transition: all 0.1s;
+  transition: all 0.2s;
 }
 
 .containerVisible {

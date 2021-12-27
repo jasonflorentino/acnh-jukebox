@@ -1,4 +1,4 @@
-const useOptimizedClassnames = true;
+const useOptimizedClassnames = false;
 
 const defaultConfig = {
   swcMinify: true,
