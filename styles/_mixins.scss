@@ -1,0 +1,33 @@
+@mixin transition_all {
+  transition: all 0.2s;
+}
+
+@mixin hover_shadow {
+  @include transition_all;
+  &:hover {
+    box-shadow: 0px 3px 8px 0 rgba(0,0,20,0.3);
+  }
+}
+
+@mixin hover_scale {
+  @include transition_all;
+  &:hover {
+    transform: scale(1.015);
+  }
+} 
+
+@mixin layer_0($mod: 0) {
+  z-index: calc(1 + $mod);
+}
+
+@mixin layer_1($mod: 0) {
+  z-index: calc(10 + $mod);
+}
+
+@mixin layer_2($mod: 0) {
+  z-index: calc(100 + $mod);
+}
+
+@mixin layer_3($mod: 0) {
+  z-index: calc(1000 + $mod);
+}

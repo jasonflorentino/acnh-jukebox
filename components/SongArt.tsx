@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import SongName from '@/components/SongName'
 import { FaPlay } from 'react-icons/fa'
-
+import makeIdFromSongName from '@/lib/utils/makeIdFromSongName'
 import styles from '@/components/SongArt.module.scss'
 
 // Dark blue with 0.8 opacity
@@ -37,18 +37,18 @@ export default function SongArt({
 
   const handleOnClick = () => {
     if (isCurrentSong) {
-      setCurrentSong(null)
-      handlePause()
+      setCurrentSong(null);
+      handlePause();
     } else {
-      setCurrentSong(song)
+      setCurrentSong(song);
       setAudioUri(song.music_uri);
-      handlePlay()
+      handlePlay();
     }
   }
   
   return (
     <li 
-      id={nameUsEn.replace(/[^a-zA-Z]/g, '')}
+      id={makeIdFromSongName(nameUsEn)}
       className={styles.listItem} 
       onMouseEnter={handleMouseEnter} 
       onMouseLeave={handleMouseLeave}
