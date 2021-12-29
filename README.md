@@ -2,7 +2,8 @@
 
 **A Web app for playing K.K. Slider jams like in Animal Crossing: New Horizons**
 
-Started as a little side-project to play around with Next.js and boy am I hooked! Also the art and music of this game is too good to NOT get lost in. Enjoy!  
+Started as a little toy project to play around with Next.js and boy am I hooked -- Next is awesome! Also the art and music of this game are just too good NOT to get lost in. Enjoy!  
+
 — Jason, Dec 2021
 
 ## Live Deployment
