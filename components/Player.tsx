@@ -22,6 +22,7 @@ const Player = ({ currentSong, audioRef }: {
   const { name: { 'name-USen': nameUsEn = '---' } = {} } = currentSong || {};
   const [volumeLevel, setVolumeLevel] = useState<VolumeLevels>(1);
   const { current: audioEl } = audioRef;
+  const [isPaused, setIsPaused] = useState<boolean>(true)
 
   const setElementVolume = (level: VolumeLevels) => {
     if (audioEl) {
@@ -62,6 +63,18 @@ const Player = ({ currentSong, audioRef }: {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nameUsEn, audioRef])  
+
+  useEffect(() => {
+    if (!audioRef.current) return
+
+    // listen to html audio element events 
+    audioRef.current.onplay = () => {
+      setIsPaused(false)
+    }
+    audioRef.current.onpause = () => {
+      setIsPaused(true)
+    }
+  }, [audioRef])
 
   return (
     <div className={styles.playerContainer}>
