@@ -82,6 +82,9 @@ const Player = ({ currentSong, audioRef }: {
         <IoMdMusicalNote className={styles.musicNote} /> {nameUsEn}
       </div>
       <div className={styles.controlButtonsContainer}>
+        <span onClick={handleClickPlayButton}>
+          { isPaused ? <FaPlay className={styles.playerControlIcon} /> : <FaPause className={styles.playerControlIcon} /> }
+        </span>
         <span
           onClick={decrementVolume}
           className={[
