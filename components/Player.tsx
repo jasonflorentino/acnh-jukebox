@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IoMdMusicalNote } from 'react-icons/io';
+import { FaPlay, FaPause } from 'react-icons/fa';
 import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi';
 import {
   ImVolumeHigh,
