@@ -73,6 +73,11 @@
   }
 }
 
+.playerControlIcon {
+  color: variables.$color_blue_accent;
+  font-size: 1em;
+}
+
 .volumeLevelBaseIcon {
   color: rgba(variables.$color_blue_grey, 0.5);
   font-size: 1.15em;
