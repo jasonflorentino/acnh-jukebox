@@ -50,6 +50,26 @@ const Player = ({ currentSong, audioRef }: {
     }
   };
 
+  function handleClickPlayButton () {
+    const currentMediaBeenPlayed = document.getElementById('audio') as HTMLAudioElement
+
+    // verification of nullable values 
+    if (!currentMediaBeenPlayed) return
+    if (!audioRef.current) return
+
+    // notify user if no music is playing and return 
+    if (!audioRef.current.src) {
+      alert('None current media found')
+      return
+    }
+    
+    if (audioRef.current.paused === false) {
+      currentMediaBeenPlayed.pause()
+    } else {
+      currentMediaBeenPlayed.play()
+    }
+  }
+
   /**
    * Ensure element volume is synced 
    * with in-state volume level.
