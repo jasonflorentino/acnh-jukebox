@@ -81,7 +81,7 @@ const Player = ({ currentSong, audioRef }: {
       <div className={styles.nameContainer}>
         <IoMdMusicalNote className={styles.musicNote} /> {nameUsEn}
       </div>
-      <div className={styles.volumeContainer}>
+      <div className={styles.controlButtonsContainer}>
         <span
           onClick={decrementVolume}
           className={[
