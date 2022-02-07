@@ -1,12 +1,15 @@
 @use "../styles/variables";
 @use "../styles/mixins";
 
+$opacity: 0.6;
+$timing: 0.25s;
+
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
   to {
-    opacity: 0.6;
+    opacity: $opacity;
   }
 }
 
@@ -17,17 +20,20 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;;
+  overflow: hidden;
 
   background: variables.$color_blue_dark;
 }
 
+.resting {
+  opacity: $opacity;
+}
+
 .fadeIn {
-  animation: fadeIn 0.2s ease-out 0s 1 normal;
-  opacity: 0.6;
+  animation: fadeIn $timing ease-out 0s 1 normal;
 }
 
 .fadeOut {
-  transition: opacity 0.2s;
+  transition: opacity $timing;
   opacity: 0;
 }

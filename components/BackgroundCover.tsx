@@ -1,25 +1,25 @@
 import { useState } from 'react';
+
 import styles from '@/components/BackgroundCover.module.scss';
+import useTransition from '@/lib/hooks/useTransition';
 
-const BackgroundCover = ({onClick}: {onClick: () => void}) => {
-  const [exit, setExit] = useState(false);
-
-  const handleClick = () => {
-    setExit(true);
-    setTimeout(() => {
-      onClick();
-    }, 200)
-  }
+const BackgroundCover = ({ onClick }: { onClick: () => void }) => {
+  const { isEntering, isExiting, exit } = useTransition({
+    timingMs: 250,
+    onExit: onClick,
+  });
 
   return (
-    <div 
-    className={[
-        styles.BackgroundCover, 
-        exit ? styles.fadeOut : styles.fadeIn,
-      ].join(' ')} 
-      onClick={handleClick}
+    <div
+      className={[
+        styles.BackgroundCover,
+        isEntering ?  styles.fadeIn : '',
+        isExiting ?  styles.fadeOut : '',
+        !isEntering && ! isExiting ? styles.resting : '',
+      ].join(' ')}
+      onClick={exit}
     ></div>
-  )
-}
+  );
+};
 
 export default BackgroundCover;
