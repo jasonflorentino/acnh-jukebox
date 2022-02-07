@@ -5,7 +5,7 @@ export default function ActionButtonsMenu(
   { children }: {children: React.ReactNode}
 ) {
   return (
-    <div className={styles.ActionButtonMenu}>
+    <div className={styles.ActionButtonsMenu}>
       {children}
     </div>
   )

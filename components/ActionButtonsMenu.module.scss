@@ -3,7 +3,7 @@
 @use "../styles/mixins";
 @use "../styles/media" as *;
 
-.ActionButtonMenu {
+.ActionButtonsMenu {
   @include mixins.layer_2;
   position: fixed;
   right: 1rem;
