@@ -15,7 +15,8 @@ export default function SongArt({
   setCurrentSong,
   handlePlay,
   handlePause,
-  setAudioUri 
+  setAudioUri,
+  cancelSearchMode, 
 }: {
   song: Song;
   isCurrentSong: boolean;
@@ -23,6 +24,7 @@ export default function SongArt({
   handlePlay: () => void;
   handlePause: () => void;
   setAudioUri: (url: string) => void;
+  cancelSearchMode: () => void;
 }) {
   const {id, image_uri, name: { 'name-USen': nameUsEn }} = song
   const [showName, setShowName] = useState(false)
@@ -43,6 +45,7 @@ export default function SongArt({
       setCurrentSong(song);
       setAudioUri(song.music_uri);
       handlePlay();
+      cancelSearchMode();
     }
   }
   

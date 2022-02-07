@@ -1,0 +1,161 @@
+@use "../styles/mixins";
+@use "../styles/variables";
+@use "../styles/typography";
+@use "../styles/media" as *;
+
+// The search component is meant to look like
+// it replaced the content of the playback bar.
+// This is done by swapping in a component with 
+// the same size and shape as the previous.
+// TODO: use playback and search input inside
+//       same container so that we are not trying
+//       to make them both the same silhouette.
+.searchInput {
+  position: fixed;
+  top: 0.85rem;
+  left: 0.75rem;
+  @include mixins.layer_3;
+  height: 54px;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  width: 80%;
+  max-width: 60rem;
+  background-color: variables.$color_white;
+  border-radius: 2.25rem / 50%;
+
+  @include tablet {
+    top: 1.2rem;
+    left: 1.5rem;
+    width: 75%;
+    border-radius: 2.5rem / 50%;
+    height: 61px;
+  }
+
+  @include desktop {
+    top: 1.5rem;
+    left: 2rem;
+    border-radius: 3rem / 50%;
+    padding-left: 1rem;
+    height: 71px;
+  }
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  margin-right: 0.2rem;
+  font-size: 1.2em;
+  color: variables.$color_blue_accent;
+  
+  @include tablet {
+    margin-right: 0.3rem;
+    font-size: 1.5rem;
+  }
+  @include desktop {
+    margin-right: 0.4rem;
+    font-size: 1.9rem;
+  }
+}
+
+// The input element gets removed from document
+// flow and positioned absolutely to match
+// to match its parent so that whole container
+// can receive the input focus outline.
+//
+// Padding is used to position and crop the input area.
+.input {
+  background: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 54px;
+  padding-left: 2.4rem;
+  padding-right: 155px;
+  
+  border-radius: 2.25rem / 50%;
+  @include typography.font-rounded;
+  color: variables.$color_blue_accent;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  @include tablet {
+    font-size: 1.5rem;
+    height: 61px;
+    border-radius: 2.5rem / 50%;
+    padding-left: 2.75rem;
+    padding-right: 190px;
+  }
+  @include desktop {
+    font-size: 1.9rem;
+    height: 71px;
+    border-radius: 3rem / 50%;
+    padding-left: 3.5rem;
+    padding-right: 220px;
+  }
+
+  &:focus {
+    border: none;
+    outline: 3px solid variables.$color_yellow_dark;
+    box-shadow: 0 0.05rem 0.25rem 0.2rem rgba(0, 0, 0, 0.2);
+
+    @include tablet {
+      box-shadow: 0 0.1rem 0.35rem 0.3rem rgba(0, 0, 0, 0.2);
+    }
+
+    @include desktop {
+      box-shadow: 0 0.15rem 0.45rem 0.4rem rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.buttonContainer {
+  top: 1rem;
+  left: 1rem;
+  @include mixins.layer_2;
+  display: flex;
+  align-items: center;
+  padding-right: 0.3rem;
+
+  @include tablet {
+    padding-right: 0.75rem;
+  }
+
+  @include desktop {
+    padding-right: 1rem;
+  }
+}
+
+.button {
+  @include mixins.hover_shadow;
+  @include mixins.hover_scale;
+  @include mixins.cursor;
+  padding: 0.2rem 0.75rem;
+  margin-left: 0.25rem;
+  
+  border-radius: 2rem;
+  @include typography.font-rounded;
+  color: variables.$color_brown;
+  background-color: rgba(variables.$color_brown, 0.15);
+  font-size: 0.9rem;
+  
+  @include tablet {
+    margin-left: 0.5rem;
+    padding: 0.25rem 1rem;
+    font-size: 1rem;
+  }
+
+  @include desktop {
+    font-size: 1.2rem;
+  }
+
+  &:focus {
+    outline: 2px solid variables.$color_brown;
+  }
+}

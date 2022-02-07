@@ -1,0 +1,39 @@
+@use "../styles/variables";
+@use "../styles/mixins";
+
+$opacity: 0.6;
+$timing: 0.25s;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: $opacity;
+  }
+}
+
+.BackgroundCover {
+  @include mixins.layer_1(-1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  background: variables.$color_blue_dark;
+}
+
+.resting {
+  opacity: $opacity;
+}
+
+.fadeIn {
+  animation: fadeIn $timing ease-out 0s 1 normal;
+}
+
+.fadeOut {
+  transition: opacity $timing;
+  opacity: 0;
+}

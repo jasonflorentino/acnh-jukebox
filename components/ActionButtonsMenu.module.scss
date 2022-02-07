@@ -1,0 +1,23 @@
+@use "../styles/typography";
+@use "../styles/variables";
+@use "../styles/mixins";
+@use "../styles/media" as *;
+
+.ActionButtonsMenu {
+  @include mixins.layer_2;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+
+  @include tablet {
+    right: 2rem;
+    bottom: 1.5rem;
+  }
+  
+  @include desktop {
+    right: 3rem;
+    bottom: 2rem;
+  }
+
+  display: flex;
+}
