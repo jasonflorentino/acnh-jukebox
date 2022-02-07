@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 type Letter = 'r' | 's';
 
-const useKeydown = (keymap: {[K in Letter]: React.RefObject<() => void> | (() => void)}) => {
+const useKeydown = (
+  keymap: { [K in Letter]: React.RefObject<() => void> | (() => void) }
+) => {
   const [acceptKeydown, setAcceptKeydown] = useState(true);
 
   useEffect(() => {
-    console.log('keydown effect!')
     const keys = new Map(Object.entries(keymap));
-    
+
     const handleKeydown = (e: KeyboardEvent) => {
       if (!acceptKeydown) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      console.log('keydown callback!')
       e.stopPropagation();
 
       const inKey = e.key.toLowerCase();
@@ -21,23 +21,22 @@ const useKeydown = (keymap: {[K in Letter]: React.RefObject<() => void> | (() =>
         if (typeof action === 'function') {
           action();
         } else if (typeof action?.current === 'function') {
-           action.current();
+          action.current();
         } else {
-          console.error(action);
-          throw new Error('Stored key action is not a function')
+          throw new Error('Stored key action is not a function');
         }
       }
-    }
-    
+    };
+
     document.addEventListener('keydown', handleKeydown);
 
     return () => document.removeEventListener('keydown', handleKeydown);
-  }, [keymap])
+  }, [keymap]);
 
   return {
     acceptKeydown,
-    setAcceptKeydown
-  }
-}
+    setAcceptKeydown,
+  };
+};
 
 export default useKeydown;

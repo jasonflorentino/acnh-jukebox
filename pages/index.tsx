@@ -1,6 +1,8 @@
+// Library
 import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 
+// Components
 import ActionButton from '@/components/ActionButton';
 import ActionButtonsMenu from '@/components/ActionButtonsMenu';
 import BackgroundCover from '@/components/BackgroundCover';
@@ -11,27 +13,34 @@ import SearchInput from '@/components/SearchInput';
 import SongArt from '@/components/SongArt';
 import TouchPrompt from '@/components/TouchPrompt';
 
+// Other
 import makeIdFromSongName from '@/lib/utils/makeIdFromSongName';
+import restartTimes from '@/lib/restartTimes';
+import styles from '@/styles/Home.module.scss';
 import useIsTouchDevice from '@/lib/hooks/useIsTouchDevice';
 import useKeydown from '@/lib/hooks/useKeydown';
 import useLocalStorage from '@/lib/hooks/useLocalStorage';
-import restartTimes from '@/lib/restartTimes';
-import styles from '@/styles/Home.module.scss';
 
+/**
+ * The main app component
+ */
 export default function Home({ songs }: { songs: Song[] }) {
-  const [currentSong, setCurrentSong] = useState<null | Song>(null);
   const [requiresTouchPrompt, setRequiresTouchPrompt] = useState(false);
   const [storage] = useLocalStorage();
   const [isTouchDevice] = useIsTouchDevice();
+
+  // Playback
+  const [currentSong, setCurrentSong] = useState<null | Song>(null);
   const audioRef = useRef<HTMLMediaElement>(null);
   const playRandomRef = useRef<() => void>(null); // Stores 'play random' fn
 
+  // Search
   const searchModeRef = useRef<() => void>(null); // Stores 'handle search mode' fn
   const [isSearching, setIsSearching] = useState(false);
   const [searchInput, setSearchInput] = useState('');
 
   /**
-   * Maps key presses to actions.
+   * Maps key presses to actions and handles executing them.
    * Provides state var and setter for when key presses will work.
    */
   const { setAcceptKeydown } = useKeydown({
@@ -167,6 +176,13 @@ export default function Home({ songs }: { songs: Song[] }) {
     }
   }
 
+  /**
+   * Used by serveral components to enter or
+   * exit search mode. 
+   * - BackgroundCover
+   * - Search Action button
+   * - Mapped to 's' key for keydown events
+   */
   const handleSearchMode = () => {
     if (isSearching) {
       setIsSearching(false);
@@ -180,6 +196,10 @@ export default function Home({ songs }: { songs: Song[] }) {
   // @ts-ignore - Cannot assign to 'current' because it is a read-only property
   searchModeRef.current = handleSearchMode; // Manually set ref after fn creation
 
+  /**
+   * Short hand to cancel out of search mode only
+   * if we're currently in it.
+   */
   const cancelSearchMode = () => {
     if (isSearching) {
       handleSearchMode();
@@ -187,6 +207,10 @@ export default function Home({ songs }: { songs: Song[] }) {
   }
 
 
+  /**
+   * Used by RANDOM button and gets mapped to 'r' key
+   * using a Ref object in useKeydown()
+   */
   const playRandomSong = () => {
     // Cancel search if clicked while in search mode.
     cancelSearchMode();
@@ -205,9 +229,14 @@ export default function Home({ songs }: { songs: Song[] }) {
   // @ts-ignore - Cannot assign to 'current' because it is a read-only property
   playRandomRef.current = playRandomSong; // Manually set ref after fn creation
 
+  /**
+   * Used to filter songs when searching
+   */
   const filterSongsFromSearch = (song: Song) => {
     if (!isSearching) return true;
-    return song.name['name-USen'].toLowerCase().includes(searchInput.toLowerCase())
+    const name = song.name['name-USen'].toLowerCase();
+    const input = searchInput.toLowerCase();
+    return name.includes(input);
   }
 
   return (
@@ -241,6 +270,7 @@ export default function Home({ songs }: { songs: Song[] }) {
             <SearchInput 
               searchInput={searchInput} 
               setSearchInput={setSearchInput}
+              cancelSearchMode={cancelSearchMode}
             />
             <BackgroundCover onClick={handleSearchMode} />
           </>

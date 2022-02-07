@@ -1,21 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { GoSearch } from 'react-icons/go';
-import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi';
-import {
-  ImVolumeHigh,
-  ImVolumeMedium,
-  ImVolumeLow,
-  ImVolumeMute,
-} from 'react-icons/im';
 
 import styles from '@/components/SearchInput.module.scss';
 
 const SearchInput = ({
   searchInput,
   setSearchInput,
+  cancelSearchMode,
 }: {
   searchInput: string;
   setSearchInput: (newInput: string) => void;
+  cancelSearchMode: () => void;
 }) => {
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
@@ -35,8 +30,8 @@ const SearchInput = ({
 
   return (
     <div className={styles.searchInput}>
-      <div className={styles.nameContainer}>
-        <GoSearch className={styles.musicNote} />
+      <div className={styles.textContainer}>
+        <GoSearch className={styles.searchIcon} />
         <input 
           ref={inputRef} 
           className={styles.input} 
@@ -51,6 +46,12 @@ const SearchInput = ({
           onClick={clearInput}
         >
           Clear
+        </button>
+        <button 
+          className={styles.button}
+          onClick={cancelSearchMode}
+        >
+          Cancel
         </button>
       </div>
     </div>
