@@ -16,41 +16,36 @@ const SearchInput = ({
 
   useEffect(() => {
     inputRef.current.focus();
-    setSearchInput('')
+    setSearchInput('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
-  }
+  };
 
   const clearInput = () => {
     setSearchInput('');
     inputRef.current.focus();
-  }
+  };
 
   return (
     <div className={styles.searchInput}>
       <div className={styles.textContainer}>
         <GoSearch className={styles.searchIcon} />
-        <input 
-          ref={inputRef} 
-          className={styles.input} 
-          type="text" 
-          value={searchInput} 
-          onChange={handleSearchInputChange} 
+        <input
+          ref={inputRef}
+          className={styles.input}
+          type="text"
+          value={searchInput}
+          onChange={handleSearchInputChange}
         />
       </div>
       <div className={styles.buttonContainer}>
-        <button 
-          className={styles.button}
-          onClick={clearInput}
-        >
+        <button className={styles.button} onClick={clearInput}>
           Clear
         </button>
-        <button 
-          className={styles.button}
-          onClick={cancelSearchMode}
-        >
+        <button className={styles.button} onClick={cancelSearchMode}>
           Cancel
         </button>
       </div>
