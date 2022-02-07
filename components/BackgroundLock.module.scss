@@ -1,0 +1,33 @@
+@use "../styles/variables";
+@use "../styles/mixins";
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+.BackgroundLock {
+  @include mixins.layer_1(-1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;;
+
+  background: variables.$color_blue_dark;
+}
+
+.fadeIn {
+  animation: fadeIn 0.2s ease-out 0s 1 normal;
+  opacity: 0.6;
+}
+
+.fadeOut {
+  transition: opacity 0.2s;
+  opacity: 0;
+}

@@ -1,0 +1,134 @@
+@use "../styles/mixins";
+@use "../styles/variables";
+@use "../styles/typography";
+@use "../styles/media" as *;
+
+.searchInput {
+  position: fixed;
+  top: 0.85rem;
+  left: 0.75rem;
+  @include mixins.layer_3;
+  height: 54px;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  width: 80%;
+  max-width: 60rem;
+  background-color: variables.$color_white;
+  border-radius: 2.25rem / 50%;
+
+  @include tablet {
+    top: 1.2rem;
+    left: 1.5rem;
+    width: 75%;
+    border-radius: 2.5rem / 50%;
+    height: 61px;
+  }
+
+  @include desktop {
+    top: 1.5rem;
+    left: 2rem;
+    border-radius: 3rem / 50%;
+    padding-left: 1rem;
+    height: 71px;
+  }
+}
+
+.nameContainer {
+  display: flex;
+  align-items: center;
+}
+
+.musicNote {
+  margin-right: 0.2rem;
+  font-size: 1.2em;
+  color: variables.$color_blue_accent;
+  
+  @include tablet {
+    margin-right: 0.3rem;
+    font-size: 1.5rem;
+  }
+  @include desktop {
+    margin-right: 0.4rem;
+    font-size: 1.9rem;
+  }
+}
+
+.input {
+  background: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 54px;
+  padding-left: 2.4rem;
+  
+  border-radius: 2.25rem / 50%;
+  @include typography.font-rounded;
+  color: variables.$color_blue_accent;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  @include tablet {
+    font-size: 1.5rem;
+    height: 61px;
+    border-radius: 2.5rem / 50%;
+    padding-left: 2.75rem;
+  }
+  @include desktop {
+    font-size: 1.9rem;
+    height: 71px;
+    border-radius: 3rem / 50%;
+    padding-left: 3.5rem;
+  }
+
+  &:focus {
+    border: none;
+    outline: 3px solid variables.$color_blue_accent;
+  }
+}
+
+.volumeContainer {
+  display: flex;
+  top: 1rem;
+  left: 1rem;
+  align-items: center;
+  font-size: 1.4rem;
+
+  @include tablet {
+    font-size: 2rem;
+  }
+}
+
+.volumeLevelBaseIcon {
+  color: rgba(variables.$color_blue_grey, 0.5);
+  font-size: 1.15em;
+}
+
+.volumeLevelBuildupIcon {
+  color: variables.$color_blue_accent;
+  font-size: 1.1em;
+  position: absolute;
+  @include mixins.layer_0;
+}
+
+.volumeLevelBuildupIconMax {
+  color: variables.$color_blue_accent;
+  font-size: 1.15em;
+  position: absolute;
+  @include mixins.layer_0;
+}
+
+.volumeControlIcon {
+  color: variables.$color_blue_dark;
+  margin: 0 0.25rem;
+
+  @include tablet {
+    margin: 0 0.75rem;
+  }
+
+  &Disabled {
+    color: variables.$color_blue_grey;
+  }
+}

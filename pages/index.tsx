@@ -1,15 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 
-import SongArt from '@/components/SongArt';
-import Player from '@/components/Player';
-import Footer from '@/components/Footer';
-import TouchPrompt from '@/components/TouchPrompt';
 import ActionButton from '@/components/ActionButton';
+import ActionButtonsMenu from '@/components/ActionButtonsMenu';
+import BackgroundLock from '@/components/BackgroundLock';
+import Footer from '@/components/Footer';
 import GradientWave from '@/components/GradientWave';
+import Player from '@/components/Player';
+import SearchInput from '@/components/SearchInput';
+import SongArt from '@/components/SongArt';
+import TouchPrompt from '@/components/TouchPrompt';
 
 import makeIdFromSongName from '@/lib/utils/makeIdFromSongName';
 import useIsTouchDevice from '@/lib/hooks/useIsTouchDevice';
+import useKeydown from '@/lib/hooks/useKeydown';
 import useLocalStorage from '@/lib/hooks/useLocalStorage';
 import restartTimes from '@/lib/restartTimes';
 import styles from '@/styles/Home.module.scss';
@@ -17,10 +21,21 @@ import styles from '@/styles/Home.module.scss';
 export default function Home({ songs }: { songs: Song[] }) {
   const [currentSong, setCurrentSong] = useState<null | Song>(null);
   const [requiresTouchPrompt, setRequiresTouchPrompt] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [storage] = useLocalStorage();
   const [isTouchDevice] = useIsTouchDevice();
   const audioRef = useRef<HTMLMediaElement>(null);
-  const playRandomRef = useRef<() => void>(null);
+  const playRandomRef = useRef<() => void>(null); // Stores 'play random' fn
+  const searchModeRef = useRef<() => void>(null); // Stores 'handle search mode' fn
+
+  /**
+   * Maps key presses to actions.
+   * Provides state var and setter for when key presses will work.
+   */
+  const { acceptKeydown, setAcceptKeydown} = useKeydown({
+      'r': playRandomRef,
+      's': searchModeRef
+    })
 
   //
   // UseEffects
@@ -108,25 +123,6 @@ export default function Home({ songs }: { songs: Song[] }) {
     }
   }, [currentSong])
 
-  /**
-   * Handles mapping the 'R' keyboard key to playing
-   * a random song. We use a Ref object to provide a
-   * reference to this function.
-   */
-  useEffect(() => {
-    const handleKeydownR = (e: KeyboardEvent) => {
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      if (
-        (e.key === 'R' || e.key === 'r') 
-        && playRandomRef.current
-      ) {
-        playRandomRef.current();
-      }
-    }
-    
-    document.addEventListener('keydown', handleKeydownR);
-  }, [playRandomRef])
-
   //
   // Component Functions
   //
@@ -184,6 +180,18 @@ export default function Home({ songs }: { songs: Song[] }) {
   // @ts-ignore - Cannot assign to 'current' because it is a read-only property
   playRandomRef.current = playRandomSong; // Manually set ref after fn creation
 
+  const handleSearchMode = () => {
+    if (isSearching) {
+      setIsSearching(false);
+      setAcceptKeydown(true);
+    } else {
+      setIsSearching(true);
+      setAcceptKeydown(false);
+    }
+  }
+  // @ts-ignore - Cannot assign to 'current' because it is a read-only property
+  searchModeRef.current = handleSearchMode; // Manually set ref after fn creation
+
   return (
     <div className={styles.app}>
       <Head>
@@ -209,8 +217,14 @@ export default function Home({ songs }: { songs: Song[] }) {
 
       <main className={styles.main}>
         <audio id='audio' ref={audioRef}></audio>
-        <Player currentSong={currentSong} audioRef={audioRef} />
-        <ActionButton symbol="r" name='random' onAction={playRandomSong} />
+        {isSearching ? <SearchInput /> : <Player currentSong={currentSong} audioRef={audioRef} />}
+        {isSearching ? <BackgroundLock onClick={handleSearchMode} /> : null}
+
+        <ActionButtonsMenu>
+          <ActionButton symbol="r" name='random' onAction={playRandomSong} />
+          <ActionButton symbol="s" name='search' onAction={playRandomSong} />
+        </ActionButtonsMenu>
+        
         <ol className={styles.songList}>
           {songs.map((song: Song) => {
             const isCurrentSong = currentSong?.id === song.id;
