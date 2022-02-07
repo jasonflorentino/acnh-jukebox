@@ -6,13 +6,14 @@ const useKeydown = (keymap: {[K in Letter]: React.RefObject<() => void> | (() =>
   const [acceptKeydown, setAcceptKeydown] = useState(true);
 
   useEffect(() => {
-    console.log('keydown effect')
+    console.log('keydown effect!')
     const keys = new Map(Object.entries(keymap));
     
     const handleKeydown = (e: KeyboardEvent) => {
-      console.log('keydown callback')
       if (!acceptKeydown) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+      console.log('keydown callback!')
+      e.stopPropagation();
 
       const inKey = e.key.toLowerCase();
       if (keys.has(inKey)) {

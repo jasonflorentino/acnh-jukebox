@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 
 import ActionButton from '@/components/ActionButton';
 import ActionButtonsMenu from '@/components/ActionButtonsMenu';
-import BackgroundLock from '@/components/BackgroundLock';
+import BackgroundCover from '@/components/BackgroundCover';
 import Footer from '@/components/Footer';
 import GradientWave from '@/components/GradientWave';
 import Player from '@/components/Player';
@@ -21,18 +21,20 @@ import styles from '@/styles/Home.module.scss';
 export default function Home({ songs }: { songs: Song[] }) {
   const [currentSong, setCurrentSong] = useState<null | Song>(null);
   const [requiresTouchPrompt, setRequiresTouchPrompt] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
   const [storage] = useLocalStorage();
   const [isTouchDevice] = useIsTouchDevice();
   const audioRef = useRef<HTMLMediaElement>(null);
   const playRandomRef = useRef<() => void>(null); // Stores 'play random' fn
+
   const searchModeRef = useRef<() => void>(null); // Stores 'handle search mode' fn
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
 
   /**
    * Maps key presses to actions.
    * Provides state var and setter for when key presses will work.
    */
-  const { acceptKeydown, setAcceptKeydown} = useKeydown({
+  const { setAcceptKeydown } = useKeydown({
       'r': playRandomRef,
       's': searchModeRef
     })
@@ -165,7 +167,30 @@ export default function Home({ songs }: { songs: Song[] }) {
     }
   }
 
+  const handleSearchMode = () => {
+    if (isSearching) {
+      setIsSearching(false);
+      setAcceptKeydown(true);
+      setSearchInput('');
+    } else {
+      setIsSearching(true);
+      setAcceptKeydown(false);
+    }
+  }
+  // @ts-ignore - Cannot assign to 'current' because it is a read-only property
+  searchModeRef.current = handleSearchMode; // Manually set ref after fn creation
+
+  const cancelSearchMode = () => {
+    if (isSearching) {
+      handleSearchMode();
+    }
+  }
+
+
   const playRandomSong = () => {
+    // Cancel search if clicked while in search mode.
+    cancelSearchMode();
+
     const randIdx = Math.floor(Math.random() * songs.length);
     const song = songs[randIdx];
 
@@ -180,17 +205,10 @@ export default function Home({ songs }: { songs: Song[] }) {
   // @ts-ignore - Cannot assign to 'current' because it is a read-only property
   playRandomRef.current = playRandomSong; // Manually set ref after fn creation
 
-  const handleSearchMode = () => {
-    if (isSearching) {
-      setIsSearching(false);
-      setAcceptKeydown(true);
-    } else {
-      setIsSearching(true);
-      setAcceptKeydown(false);
-    }
+  const filterSongsFromSearch = (song: Song) => {
+    if (!isSearching) return true;
+    return song.name['name-USen'].toLowerCase().includes(searchInput.toLowerCase())
   }
-  // @ts-ignore - Cannot assign to 'current' because it is a read-only property
-  searchModeRef.current = handleSearchMode; // Manually set ref after fn creation
 
   return (
     <div className={styles.app}>
@@ -217,16 +235,29 @@ export default function Home({ songs }: { songs: Song[] }) {
 
       <main className={styles.main}>
         <audio id='audio' ref={audioRef}></audio>
-        {isSearching ? <SearchInput /> : <Player currentSong={currentSong} audioRef={audioRef} />}
-        {isSearching ? <BackgroundLock onClick={handleSearchMode} /> : null}
+
+        {isSearching ? (
+          <>
+            <SearchInput 
+              searchInput={searchInput} 
+              setSearchInput={setSearchInput}
+            />
+            <BackgroundCover onClick={handleSearchMode} />
+          </>
+        ) : (
+          <Player 
+            currentSong={currentSong} 
+            audioRef={audioRef} 
+          />
+        )}
 
         <ActionButtonsMenu>
           <ActionButton symbol="r" name='random' onAction={playRandomSong} />
-          <ActionButton symbol="s" name='search' onAction={playRandomSong} />
+          <ActionButton symbol="s" name='search' onAction={handleSearchMode} />
         </ActionButtonsMenu>
         
         <ol className={styles.songList}>
-          {songs.map((song: Song) => {
+          {songs.filter(filterSongsFromSearch).map((song: Song) => {
             const isCurrentSong = currentSong?.id === song.id;
             return (
               <SongArt
@@ -237,6 +268,7 @@ export default function Home({ songs }: { songs: Song[] }) {
                 handlePlay={handlePlay}
                 handlePause={handlePause}
                 setAudioUri={setAudioUri}
+                cancelSearchMode={cancelSearchMode}
               />
             );
           })}

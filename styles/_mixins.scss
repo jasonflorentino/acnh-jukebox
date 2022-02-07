@@ -16,6 +16,10 @@
   }
 } 
 
+@mixin cursor {
+  cursor: url('../public/pointer.png'), auto;
+}
+
 @mixin layer_0($mod: 0) {
   z-index: calc(1 + $mod);
 }

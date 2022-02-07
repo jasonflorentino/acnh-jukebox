@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styles from '@/components/BackgroundLock.module.scss';
+import styles from '@/components/BackgroundCover.module.scss';
 
-const BackgroundLock = ({onClick}: {onClick: () => void}) => {
+const BackgroundCover = ({onClick}: {onClick: () => void}) => {
   const [exit, setExit] = useState(false);
 
   const handleClick = () => {
@@ -14,7 +14,7 @@ const BackgroundLock = ({onClick}: {onClick: () => void}) => {
   return (
     <div 
     className={[
-        styles.BackgroundLock, 
+        styles.BackgroundCover, 
         exit ? styles.fadeOut : styles.fadeIn,
       ].join(' ')} 
       onClick={handleClick}
@@ -22,4 +22,4 @@ const BackgroundLock = ({onClick}: {onClick: () => void}) => {
   )
 }
 
-export default BackgroundLock;
+export default BackgroundCover;

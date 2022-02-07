@@ -69,6 +69,7 @@
   color: variables.$color_blue_accent;
   font-size: 1.2rem;
   font-weight: 500;
+  transition: all 0.2s;
 
   @include tablet {
     font-size: 1.5rem;
@@ -85,50 +86,45 @@
 
   &:focus {
     border: none;
-    outline: 3px solid variables.$color_blue_accent;
+    outline: 3px solid variables.$color_yellow_dark;
+
+    box-shadow: 0 0.05rem 0.25rem 0.2rem rgba(0, 0, 0, 0.2);
+    @include tablet {
+      box-shadow: 0 0.1rem 0.35rem 0.3rem rgba(0, 0, 0, 0.2);
+    }
+    @include desktop {
+      box-shadow: 0 0.15rem 0.45rem 0.4rem rgba(0, 0, 0, 0.2);
+    }
   }
 }
 
-.volumeContainer {
-  display: flex;
+.buttonContainer {
   top: 1rem;
   left: 1rem;
+  @include mixins.layer_2;
+  display: flex;
   align-items: center;
-  font-size: 1.4rem;
+  padding-right: 1rem;
+}
+
+.button {
+  @include mixins.cursor;
+  padding: 0.25rem 1rem;
+
+  color: variables.$color_brown;
+  background-color: rgba(variables.$color_brown, 0.15);
+  border-radius: 2rem;
+  @include typography.font-rounded;
+  font-size: 1rem;
 
   @include tablet {
-    font-size: 2rem;
-  }
-}
-
-.volumeLevelBaseIcon {
-  color: rgba(variables.$color_blue_grey, 0.5);
-  font-size: 1.15em;
-}
-
-.volumeLevelBuildupIcon {
-  color: variables.$color_blue_accent;
-  font-size: 1.1em;
-  position: absolute;
-  @include mixins.layer_0;
-}
-
-.volumeLevelBuildupIconMax {
-  color: variables.$color_blue_accent;
-  font-size: 1.15em;
-  position: absolute;
-  @include mixins.layer_0;
-}
-
-.volumeControlIcon {
-  color: variables.$color_blue_dark;
-  margin: 0 0.25rem;
-
-  @include tablet {
-    margin: 0 0.75rem;
+    font-size: 1.2rem;
   }
 
-  &Disabled {
-    color: variables.$color_blue_grey;
+  @include mixins.hover_shadow;
+  @include mixins.hover_scale;
+
+  &:focus {
+    outline: 2px solid variables.$color_brown;
   }
 }
