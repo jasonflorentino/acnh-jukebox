@@ -71,6 +71,16 @@ export default function Home({ songs }: { songs: Song[] }) {
    * the current song changes to provide
    * more seamless looping of songs for which
    * we know a restart time.
+   *
+   * Basically this works by checking if the 
+   * time elapsed is >= to the restartTime and 
+   * if so, starting the track again. To get good
+   * precision on the loop, we poll every 50ms --
+   * but to be fancy we only do that once there are about
+   * 2s left. Until then we walk up logarithmically,
+   * contually checking the elapsed time for how 
+   * close we are to the end at an interval half as 
+   * big as the last one.
    * 
    * Implements a method I experimented with here:
    * https://codepen.io/jasonflorentino/pen/mdBwJpd?editors=1010
