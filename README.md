@@ -1,4 +1,4 @@
-# 📀 ACNH Jukebox
+# 🏝 ACNH Jukebox
 
 **A Web app for playing K.K. Slider jams like in Animal Crossing: New Horizons**
 
