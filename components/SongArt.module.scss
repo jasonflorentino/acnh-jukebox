@@ -27,28 +27,27 @@
 }
 
 .songImage {
-  @include mixins.hover_shadow;;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 
   @include tablet {
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 }
 
 .selected {
   box-shadow: 0 0 0 0.25rem rgba(variables.$color_yellow_light, 1);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   position: relative;
   opacity: 1;
   transition: box-shadow 0.2s;
 
   @include tablet {
     box-shadow: 0 0 0 0.5rem rgba(variables.$color_yellow_light, 1);
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 
   @include desktop {
-    border-radius: .75rem;
+    border-radius: 0.75rem;
   }
 }
 
@@ -62,8 +61,8 @@
   left: -1px;
   width: 2.75rem;
   height: 2rem;
-  border: 3px solid variables.$color_yellow_light;
   box-shadow: none;
+  border: 3px solid variables.$color_yellow_light;
   border-radius: 0 0 75% 0;
   background-color: variables.$color_yellow_light;
   @include mixins.layer_1;
