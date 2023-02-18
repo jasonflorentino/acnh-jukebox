@@ -4,7 +4,7 @@
 @use "../styles/media" as *;
 
 .container {
-  @include mixins.layer_1;
+  @include mixins.layer_1(1);
   position: absolute;
   width: calc(100% - (0.78rem * 2));
   top: -0.25rem;
@@ -24,20 +24,21 @@
 
 .name {
   background-color: rgba(variables.$color_blue_accent, 0.9);
-  padding: 0.6rem 1.4rem;
+  padding: 0.5rem 1rem;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
   color: variables.$color_white;
 
   @include typography.font-rounded;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1;
   text-align: center;
 
   @include tablet {
     font-size: 1.4rem;
+    padding: 0.6rem 1.4rem;
   }
 
   @include desktop {

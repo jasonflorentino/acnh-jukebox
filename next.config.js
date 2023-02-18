@@ -12,8 +12,8 @@ const defaultConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 120,
   },
-}
+};
 
-module.exports = useOptimizedClassnames 
-  ? require('./packages/next-optimized-classnames')(defaultConfig) 
+module.exports = useOptimizedClassnames
+  ? require('./packages/next-optimized-classnames')(defaultConfig)
   : defaultConfig;
