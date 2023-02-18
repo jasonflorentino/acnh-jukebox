@@ -13,6 +13,7 @@
   "dependencies": {
     "next": "^13.1.6",
     "next-optimized-classnames": "^1.0.2",
+    "node": "^16.19.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",
