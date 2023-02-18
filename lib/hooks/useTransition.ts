@@ -16,6 +16,7 @@ const useTransition = ({
     setTimeout(() => {
       setIsEntering(false);
     }, timingMs);
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const exit = () => {
