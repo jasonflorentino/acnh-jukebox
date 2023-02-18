@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 type Letter = 'r' | 's';
 
+/**
+ * When `acceptKeydown` === true we'll look up a callback fn
+ * stored in the ref object we were passed based on the key
+ * that was pressed. If a callback was found, call it.
+ */
 const useKeydown = (
   keymap: { [K in Letter]: React.RefObject<() => void> | (() => void) }
 ) => {
@@ -15,9 +20,9 @@ const useKeydown = (
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       e.stopPropagation();
 
-      const inKey = e.key.toLowerCase();
-      if (keys.has(inKey)) {
-        const action = keys.get(inKey);
+      const inputKey = e.key.toLowerCase();
+      if (keys.has(inputKey)) {
+        const action = keys.get(inputKey);
         if (typeof action === 'function') {
           action();
         } else if (typeof action?.current === 'function') {
@@ -31,7 +36,7 @@ const useKeydown = (
     document.addEventListener('keydown', handleKeydown);
 
     return () => document.removeEventListener('keydown', handleKeydown);
-  }, [keymap]);
+  }, [keymap, acceptKeydown]);
 
   return {
     acceptKeydown,

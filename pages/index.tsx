@@ -1,5 +1,5 @@
 // Library
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Head from 'next/head';
 
 // Components
@@ -43,10 +43,12 @@ export default function Home({ songs }: { songs: Song[] }) {
    * Maps key presses to actions and handles executing them.
    * Provides state var and setter for when key presses will work.
    */
-  const { setAcceptKeydown } = useKeydown({
+  const { setAcceptKeydown } = useKeydown(
+    useMemo(() => ({
       'r': playRandomRef,
       's': searchModeRef
-    })
+    }), [playRandomRef, searchModeRef])
+  )
 
   //
   // UseEffects
@@ -183,7 +185,7 @@ export default function Home({ songs }: { songs: Song[] }) {
    * - Search Action button
    * - Mapped to 's' key for keydown events
    */
-  const handleSearchMode = () => {
+  const toggleSearchMode = () => {
     if (isSearching) {
       setIsSearching(false);
       setAcceptKeydown(true);
@@ -194,7 +196,7 @@ export default function Home({ songs }: { songs: Song[] }) {
     }
   }
   // @ts-ignore - Cannot assign to 'current' because it is a read-only property
-  searchModeRef.current = handleSearchMode; // Manually set ref after fn creation
+  searchModeRef.current = toggleSearchMode; // Manually set ref after fn creation
 
   /**
    * Short hand to cancel out of search mode only
@@ -202,7 +204,7 @@ export default function Home({ songs }: { songs: Song[] }) {
    */
   const cancelSearchMode = () => {
     if (isSearching) {
-      handleSearchMode();
+      toggleSearchMode();
     }
   }
 
@@ -272,7 +274,7 @@ export default function Home({ songs }: { songs: Song[] }) {
               setSearchInput={setSearchInput}
               cancelSearchMode={cancelSearchMode}
             />
-            <BackgroundCover onClick={handleSearchMode} />
+            <BackgroundCover onClick={toggleSearchMode} />
           </>
         ) : (
           <Player 
@@ -283,7 +285,7 @@ export default function Home({ songs }: { songs: Song[] }) {
 
         <ActionButtonsMenu>
           <ActionButton symbol="r" name='random' onAction={playRandomSong} />
-          <ActionButton symbol="s" name='search' onAction={handleSearchMode} />
+          <ActionButton symbol="s" name='search' onAction={toggleSearchMode} />
         </ActionButtonsMenu>
         
         <ol className={styles.songList}>
