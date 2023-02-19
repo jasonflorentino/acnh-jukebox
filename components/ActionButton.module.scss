@@ -10,12 +10,13 @@
   padding: 0.25rem 0.45rem;
   padding-right: 0.75rem;
   cursor: inherit;
-  
+
   @include typography.font-rounded;
   color: variables.$color_brown;
-  background-color:  variables.$color_white;
+  background-color: variables.$color_white;
   font-size: 1rem;
   border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 6px 0px;
 
   @include tablet {
     font-size: 1.25rem;

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import SongName from '@/components/SongName'
 import { FaPlay } from 'react-icons/fa'
-import makeIdFromSongName from '@/lib/utils/makeIdFromSongName'
+import { makeIdFromSongName, toClassNames } from '@/lib/utils'
 import styles from '@/components/SongArt.module.scss'
 
 // Dark blue with 0.8 opacity
@@ -64,10 +64,10 @@ export default function SongArt({
           <FaPlay className={styles.playIcon}/>
         </div>
       )}
-      <div className={[
+      <div className={toClassNames(
           styles.selected, 
           isCurrentSong ? '' : styles.hidden
-        ].join(' ')}
+        )}
       >
         <Image 
           loading={id === 1 ? 'eager': 'lazy'}

@@ -24,6 +24,11 @@
   position: relative;
   @include mixins.hover_shadow;
   @include mixins.hover_scale;
+  border-radius: 0.3rem;
+
+  @include tablet {
+    border-radius: 0.5rem;
+  }
 }
 
 .songImage {

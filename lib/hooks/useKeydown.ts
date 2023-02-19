@@ -7,7 +7,7 @@ type Letter = 'r' | 's';
  * stored in the ref object we were passed based on the key
  * that was pressed. If a callback was found, call it.
  */
-const useKeydown = (
+export const useKeydown = (
   keymap: { [K in Letter]: React.RefObject<() => void> | (() => void) }
 ) => {
   const [acceptKeydown, setAcceptKeydown] = useState(true);

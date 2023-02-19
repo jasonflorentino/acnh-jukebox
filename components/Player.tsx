@@ -9,6 +9,7 @@ import {
 } from 'react-icons/im';
 
 import styles from '@/components/Player.module.scss';
+import { toClassNames } from '@/lib/utils'
 
 type VolumeLevels = 0 | 1 | 2 | 3;
 
@@ -70,10 +71,10 @@ const Player = ({ currentSong, audioRef }: {
       <div className={styles.volumeContainer}>
         <span
           onClick={decrementVolume}
-          className={[
+          className={toClassNames(
             styles.volumeControlIcon,
             volumeLevel === 0 ? styles.volumeControlIconDisabled : '',
-          ].join(' ')}
+          )}
         >
           <HiMinusCircle />
         </span>
@@ -86,10 +87,10 @@ const Player = ({ currentSong, audioRef }: {
         </div>
         <span
           onClick={incrementVolume}
-          className={[
+          className={toClassNames(
             styles.volumeControlIcon,
             volumeLevel === 3 ? styles.volumeControlIconDisabled : '',
-          ].join(' ')}
+          )}
         >
           <HiPlusCircle />
         </span>

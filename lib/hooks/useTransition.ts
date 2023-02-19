@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 const noop = () => {};
 
-const useTransition = ({
+export const useTransition = ({
   timingMs = 250,
   onExit = noop,
 }: {

@@ -14,12 +14,10 @@ import SongArt from '@/components/SongArt';
 import TouchPrompt from '@/components/TouchPrompt';
 
 // Other
-import makeIdFromSongName from '@/lib/utils/makeIdFromSongName';
-import restartTimes from '@/lib/restartTimes';
 import styles from '@/styles/Home.module.scss';
-import useIsTouchDevice from '@/lib/hooks/useIsTouchDevice';
-import useKeydown from '@/lib/hooks/useKeydown';
-import useLocalStorage from '@/lib/hooks/useLocalStorage';
+import restartTimes from '@/lib/restartTimes';
+import { useIsTouchDevice, useKeydown, useLocalStorage } from '@/lib/hooks';
+import { makeIdFromSongName } from '@/lib/utils';
 
 /**
  * The main app component
@@ -217,7 +215,6 @@ export default function Home({ songs }: { songs: Song[] }) {
       toggleSearchMode();
     }
   }
-
 
   /**
    * Used by RANDOM button and gets mapped to 'r' key
