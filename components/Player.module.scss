@@ -15,6 +15,7 @@
   width: 80%;
   max-width: 60rem;
   background-color: variables.$color_white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 2.25rem / 50%;
 
   @include tablet {

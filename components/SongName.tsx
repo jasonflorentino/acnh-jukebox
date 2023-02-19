@@ -5,7 +5,7 @@ export default function SongName({ name, showName }: {name: string, showName: bo
   return (
     <div className={containerStyle}>
       <div className={styles.nameContainer}>
-        <h2 className={styles.name}>
+        <h2 className={styles.nameText}>
           {name}
         </h2>
       </div>

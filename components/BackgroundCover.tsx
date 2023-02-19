@@ -1,7 +1,6 @@
-import { useState } from 'react';
-
 import styles from '@/components/BackgroundCover.module.scss';
-import useTransition from '@/lib/hooks/useTransition';
+import { useTransition } from '@/lib/hooks';
+import { toClassNames } from '@/lib/utils'
 
 const BackgroundCover = ({ onClick }: { onClick: () => void }) => {
   const { isEntering, isExiting, exit } = useTransition({
@@ -11,12 +10,12 @@ const BackgroundCover = ({ onClick }: { onClick: () => void }) => {
 
   return (
     <div
-      className={[
+      className={toClassNames(
         styles.BackgroundCover,
         isEntering ?  styles.fadeIn : '',
         isExiting ?  styles.fadeOut : '',
         !isEntering && ! isExiting ? styles.resting : '',
-      ].join(' ')}
+      )}
       onClick={exit}
     ></div>
   );

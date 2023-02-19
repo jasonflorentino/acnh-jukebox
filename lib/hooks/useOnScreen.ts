@@ -9,7 +9,7 @@ import { useState, useEffect, MutableRefObject } from 'react';
  * Implementation from SO:
  * https://stackoverflow.com/questions/45514676/react-check-if-element-is-visible-in-dom
  */
-export default function useOnScreen(ref:  MutableRefObject<HTMLElement | null>) {
+export function useOnScreen(ref:  MutableRefObject<HTMLElement | null>) {
 
   const [isIntersecting, setIntersecting] = useState(false)
 
@@ -26,3 +26,5 @@ export default function useOnScreen(ref:  MutableRefObject<HTMLElement | null>) 
 
   return isIntersecting
 }
+
+export default useOnScreen;

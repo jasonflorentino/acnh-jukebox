@@ -9,7 +9,7 @@
 
 import { useState, useEffect } from 'react';
 
-const useIsMobile = () => {
+export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

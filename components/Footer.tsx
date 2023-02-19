@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import { GoMarkGithub } from 'react-icons/go';
 
-import useOnScreen from '@/lib/hooks/useOnScreen';
 import styles from '@/components/Footer.module.scss';
+import { useOnScreen } from '@/lib/hooks';
+import { toClassNames } from '@/lib/utils';
 
 export default function Footer() {
   const ref = useRef<HTMLElement>(null);
@@ -11,10 +12,10 @@ export default function Footer() {
   return (
     <footer 
       ref={ref} 
-      className={[
+      className={toClassNames(
         styles.footerContainer, 
         isVisible ? styles.appear : '',
-      ].join(' ')}
+      )}
     >
       Made with ❤️ by Jason Florentino
       <a href='https://github.com/jasonflorentino' target="_blank" rel="noreferrer">

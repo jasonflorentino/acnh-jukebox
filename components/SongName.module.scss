@@ -3,13 +3,25 @@
 @use "../styles/variables";
 @use "../styles/media" as *;
 
+@mixin calculateWidth($parentPadding: 0) {
+  width: calc(100% - ($parentPadding * 2));
+}
+
 .container {
   @include mixins.layer_1(1);
+  @include calculateWidth(variables.$song_art_padding_default);
   position: absolute;
-  width: calc(100% - (0.78rem * 2));
   top: -0.25rem;
   opacity: 0;
   transition: all 0.2s;
+
+  @include tablet {
+    @include calculateWidth(variables.$song_art_padding_tablet);
+  }
+
+  @include desktop {
+    @include calculateWidth(variables.$song_art_padding_desktop);
+  }
 }
 
 .containerVisible {
@@ -22,7 +34,7 @@
   justify-content: center;
 }
 
-.name {
+.nameText {
   background-color: rgba(variables.$color_blue_accent, 0.9);
   padding: 0.5rem 1rem;
   border-radius: 1rem;

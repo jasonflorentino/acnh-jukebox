@@ -11,7 +11,7 @@
 
 import { useState, useEffect } from 'react';
 
-const useIsTouchDevice = () => {
+export const useIsTouchDevice = () => {
   const [isTouchable, setIsTouchable] = useState(false);
 
   useEffect(() => {
