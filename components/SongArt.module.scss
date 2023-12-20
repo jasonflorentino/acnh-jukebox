@@ -1,6 +1,6 @@
-@use "../styles/variables";
-@use "../styles/mixins";
-@use "../styles/media" as *;
+@use '../styles/variables';
+@use '../styles/mixins';
+@use '../styles/media' as *;
 
 .listItem {
   display: block;
@@ -33,6 +33,8 @@
 
 .songImage {
   border-radius: 0.3rem;
+  width: 100%;
+  height: 100%;
 
   @include tablet {
     border-radius: 0.5rem;

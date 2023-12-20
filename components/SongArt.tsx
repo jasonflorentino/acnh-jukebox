@@ -74,9 +74,8 @@ export default function SongArt({
           className={styles.songImage} 
           src={image_uri} 
           alt={nameUsEn} 
-          width={200} 
-          height={200} 
-          layout='responsive' 
+          width={300}
+          height={300}
           placeholder='blur'
           blurDataURL={blurDataURL}
         />
