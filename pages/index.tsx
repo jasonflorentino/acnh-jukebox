@@ -1,6 +1,7 @@
 // Library
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Head from 'next/head';
+import MUSIC_DATA from '@/data/music.json';
 
 // Components
 import ActionButton from '@/components/ActionButton';
@@ -324,27 +325,42 @@ export default function Home({ songs }: { songs: Song[] }) {
 }
 
 export async function getStaticProps() {
-  const req = await fetch('https://acnhapi.com/v1a/songs');
-  const data: Song[] = await req.json();
+  /** ACNH API is offline :'( */
+  // const req = await fetch('https://acnhapi.com/v1a/songs');
+  // const data: Song[] = await req.json();
 
   /**
    * Remove unused props from data
    */
-  const prunedSongs = data.map((song: Song) => {
-    const { 
-      'file-name': _unused_fileName,
-      'sell-price': _unused_sellPrice,
-      'buy-price': _unused_buyPrice, 
-      isOrderable: _unused_isOrderable,
-      ...prunedSongData 
-    } = song;
+  // const prunedSongs = data.map((song: Song) => {
+  //   const {
+  //     'file-name': _unused_fileName,
+  //     'sell-price': _unused_sellPrice,
+  //     'buy-price': _unused_buyPrice,
+  //     isOrderable: _unused_isOrderable,
+  //     ...prunedSongData
+  //   } = song;
 
-    return prunedSongData;
-  })
+  //   return prunedSongData;
+  // })
+
+
+  // format data to serve assets ourselves
+  const prunedSongs: Song[] = []
+  for (const song in MUSIC_DATA) {
+    //@ts-ignore MUSIC_DATA is implicit any
+    const {id, name, 'file-name': fileName} = MUSIC_DATA[song];
+    prunedSongs.push({
+      id,
+      name,
+      music_uri: `/music/kk/${fileName}.mp3`,
+      image_uri: `/images/music/${fileName}.png`
+    })
+  }
 
   return {
     props: {
-      songs: prunedSongs,
+      songs: prunedSongs
     },
   };
 }
